@@ -1,0 +1,25 @@
+name: Check Pull Request
+
+on:
+  pull_request:
+    branches:
+      - '*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Lint, Compile and Test
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+          cache: yarn
+      - name: Install packages
+        run: yarn install
+      - name: Lint code
+        run: yarn lint
+      - name: Compile code
+        run: yarn compile
+      - name: Run tests
+        run: yarn test

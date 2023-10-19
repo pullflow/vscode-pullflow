@@ -1,0 +1,58 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module"
+    },
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "rules": {
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "variable",
+                "format": [
+                    "camelCase",
+                    "UPPER_CASE",
+                    "PascalCase"
+                ]
+            }
+        ],
+        "@typescript-eslint/semi": "off",
+        "eqeqeq": "warn",
+        "no-throw-literal": "warn",
+        "semi": "off",
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true,
+                "semi": false
+            }
+        ],
+        "no-await-in-loop": "warn",
+        "no-return-await": "error",
+        "no-unused-vars": "warn",
+        "no-nested-ternary": "off",
+        "no-undefined": "off",
+        "no-var": "error",
+        "prefer-const": "warn", //use const when variable isn't reassigned
+        "prefer-object-spread": "error", // prefer spread operator over object.assign
+        "require-await": "error", // no async functions without await
+        //code style consistency
+        "brace-style": [
+            "warn",
+            "1tbs" // one true brace style
+        ]
+    },
+    "ignorePatterns": [
+        "out",
+        "dist",
+        "**/*.d.ts"
+    ],
+    "extends": [
+        "prettier"
+    ]
+}
