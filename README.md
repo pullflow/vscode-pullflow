@@ -80,14 +80,25 @@ This extension is an open-source project created by [Pullflow Inc](https://githu
 
 This is just the beginning of Pullflow's VS Code Slack integration, and we are eager to make improvements based on your feedback. Please don't hesitate to share your thoughts with us through [GitHub issues](https://github.com/pullflow/vscode-pullflow/issues) or on Twitter [@pullflow](https://twitter.com/pullflow).
 
-#### **Development Steps**
+#### **Development Guidelines**
 
-1. Clone the repository.
-2. Install node modules with `yarn install`.
-3. Run extension with `yarn watch`.
-4. Enter `cmd/ctrl+shift+D` to open the debug panel and run extension in debug mode.
-5. Run tests with `yarn test`.
-6. Run `yarn lint` to check for linter errors.
+1. Set up Pullflow account and connect your GitHub and Slack accounts.
+2. Clone the repository.
+3. Create `.env` file in the root directory and add the following environment variables:
+
+```
+SESSIONS_SECRET_KEY=(string) # any 32 characters key for session encryption
+PULLFLOW_APP_URL="https://app.pullflow.com"
+CLIENT_IDENTIFIER="com.pullflow.vscode"
+```
+4. Install node modules with `yarn install`.
+5. Run extension with `yarn watch`.
+6. Enter `cmd/ctrl+shift+D` to open debug panel and run extension in debug mode.
+7. Run tests with `yarn test`.
+8. Run `yarn lint` to check for linter errors.
+9. Run `vsce package` to generate vsix file for extension.
+10. Run `code --install-extension pullflow-{version}.vsix` to install extension locally.
+
 
 ## **License**
 
