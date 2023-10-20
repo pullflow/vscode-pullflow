@@ -80,6 +80,15 @@ This extension is an open-source project created by [Pullflow Inc](https://githu
 
 This is just the beginning of Pullflow's VS Code Slack integration, and we are eager to make improvements based on your feedback. Please don't hesitate to share your thoughts with us through [GitHub issues](https://github.com/pullflow/vscode-pullflow/issues) or on Twitter [@pullflow](https://twitter.com/pullflow).
 
+#### **Development Steps**
+
+1. Clone the repository.
+2. Install node modules with `yarn install`.
+3. Run extension with `yarn watch`.
+4. Enter `cmd/ctrl+shift+D` to open the debug panel and run extension in debug mode.
+5. Run tests with `yarn test`.
+6. Run `yarn lint` to check for linter errors.
+
 ## **License**
 
 [MIT](https://github.com/pullflow/vscode-pullflow/blob/main/LICENSE)
