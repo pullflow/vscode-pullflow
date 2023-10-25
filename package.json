@@ -3,7 +3,7 @@
   "publisher": "Pullflow",
   "displayName": "Pullflow",
   "description": "Enhance your code review process by consolidating interactions within VS Code and directly integrating with platforms like Slack and GitHub.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "preview": true,
   "license": "MIT",
   "engines": {
