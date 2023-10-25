@@ -2,7 +2,7 @@
   "name": "pullflow",
   "publisher": "Pullflow",
   "displayName": "Pullflow",
-  "description": "Enhance your code review process by consolidating interactions within VS Code and directly integrating with platforms like Slack and GitHub.",
+  "description": "Code review collaboration across GitHub, Slack, and VS Code.",
   "version": "1.0.1",
   "preview": true,
   "license": "MIT",
@@ -14,11 +14,14 @@
   },
   "icon": "assets/pullflow.png",
   "categories": [
-    "SCM Providers",
+    "Programming Languages",
+    "Machine Learning",
+    "Education",
+    "Snippets",
     "Other"
   ],
   "galleryBanner": {
-    "color": "#795DBD",
+    "color": "#F6F4F9",
     "theme": "light"
   },
   "private": true,
