@@ -52,9 +52,6 @@ export const PullRequestState = {
       if (errorCount.count >= MAX_ERROR_COUNT) {
         StatusBar.update({ context, statusBar, state: StatusBarState.Error })
       }
-      window.showErrorMessage(
-        `Pullflow: Couldn't fetch pull requests. ${codeReviews.error.message}`
-      )
       return
     }
     await Store.set(context, {

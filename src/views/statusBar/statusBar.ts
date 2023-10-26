@@ -68,11 +68,15 @@ export const StatusBar = {
     log.info('updating status bar', module)
 
     if (state === StatusBarState.SignedIn) {
-      statusBarProperties.signedIn.text = getStatusBarText(context)
+      statusBarProperties.signedIn.text = getStatusBarText({ context })
       statusBar = Object.assign(statusBar, statusBarProperties.signedIn)
     } else if (state === StatusBarState.Loading) {
       statusBar = Object.assign(statusBar, statusBarProperties.loading)
     } else if (state === StatusBarState.Error) {
+      statusBarProperties.error.text = getStatusBarText({
+        context,
+        showErrorIcon: true,
+      })
       statusBar = Object.assign(statusBar, statusBarProperties.error)
     } else {
       statusBar = Object.assign(statusBar, statusBarProperties.signedOut)
@@ -82,7 +86,13 @@ export const StatusBar = {
 }
 
 /** computes status bar text */
-function getStatusBarText(context: ExtensionContext): string {
+function getStatusBarText({
+  context,
+  showErrorIcon = false,
+}: {
+  context: ExtensionContext
+  showErrorIcon?: boolean
+}): string {
   if (STATUS_BAR_ICON_PREVIEW) {
     const allIcons = IconReference.map((k) => `$(${k})`).join('')
     return '$(pullflow-icon)' + allIcons
@@ -93,12 +103,15 @@ function getStatusBarText(context: ExtensionContext): string {
     previousPresenceStatus,
   } = Store.get(context)
 
-  if (!pendingUserCodeReviews && !userAuthoredCodeReviews) return ''
+  const presenceIcon =
+    previousPresenceStatus === PresenceStatus.Flow ? '$(symbol-event)' : ''
+  const errorIcon = showErrorIcon ? '  $(warning)  ' : ''
+
+  if (!pendingUserCodeReviews && !userAuthoredCodeReviews)
+    return `${presenceIcon} ${errorIcon} $(pullflow-icon)`
 
   const pendingCodeReviewsCount = pendingUserCodeReviews?.length || 0
   const authoredCodeReviewsCount = userAuthoredCodeReviews?.length || 0
-  const presenceIcon =
-    previousPresenceStatus === PresenceStatus.Flow ? '$(symbol-event)' : ''
   if (
     pendingCodeReviewsCount < MAX_PR_COUNT &&
     authoredCodeReviewsCount < MAX_PR_COUNT
@@ -113,8 +126,8 @@ function getStatusBarText(context: ExtensionContext): string {
       ) || []
     return `${presenceIcon} ${pendingCodeReviewIcons.join(
       ''
-    )} $(pullflow-icon)\t${authoredCodeReviewIcons.join('')}`
+    )} ${errorIcon} $(pullflow-icon) ${authoredCodeReviewIcons.join('')}`
   } else {
-    return `${presenceIcon} ${pendingCodeReviewsCount} $(pullflow-icon) ${authoredCodeReviewsCount}`
+    return `${presenceIcon} ${pendingCodeReviewsCount} ${errorIcon} $(pullflow-icon) ${authoredCodeReviewsCount}`
   }
 }
