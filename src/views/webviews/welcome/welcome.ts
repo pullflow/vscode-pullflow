@@ -119,7 +119,7 @@ export const Welcome = {
             <table>
               <tbody>
                 <tr>
-                  <td>Pullflow: Active Pull Requests (ctrl/cmd+Shift+,)</td>
+                  <td>Pullflow: Active Pull Requests (Ctrl/Cmd+Shift+,)</td>
                 </tr>
                 <tr>
                   <td>Pullflow: Login</td>
