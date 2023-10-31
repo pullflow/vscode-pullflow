@@ -47,5 +47,8 @@ export const Reconnect = async (
     userAuthoredCodeReviews: codeReviews.data.authored,
   })
   StatusBar.update({ context, statusBar, state: StatusBarState.SignedIn })
+
+  commands.executeCommand(Command.activePullRequests)
+
   return
 }
