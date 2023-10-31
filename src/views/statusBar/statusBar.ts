@@ -108,7 +108,7 @@ function getStatusBarText({
   const errorIcon = showErrorIcon ? '  $(warning)  ' : ''
 
   if (!pendingUserCodeReviews && !userAuthoredCodeReviews)
-    return `${presenceIcon} ${errorIcon} $(pullflow-icon)`
+    return `${errorIcon} ${presenceIcon} $(pullflow-icon)`
 
   const pendingCodeReviewsCount = pendingUserCodeReviews?.length || 0
   const authoredCodeReviewsCount = userAuthoredCodeReviews?.length || 0
@@ -124,10 +124,10 @@ function getStatusBarText({
       userAuthoredCodeReviews?.map(
         (codeReview) => `$(${PullRequestIcons.getIcon(codeReview.botReaction)})`
       ) || []
-    return `${presenceIcon} ${pendingCodeReviewIcons.join(
+    return `${errorIcon} ${presenceIcon} ${pendingCodeReviewIcons.join(
       ''
-    )} ${errorIcon} $(pullflow-icon) ${authoredCodeReviewIcons.join('')}`
+    )} $(pullflow-icon) ${authoredCodeReviewIcons.join('')}`
   } else {
-    return `${presenceIcon} ${pendingCodeReviewsCount} ${errorIcon} $(pullflow-icon) ${authoredCodeReviewsCount}`
+    return `${errorIcon} ${presenceIcon} ${pendingCodeReviewsCount} $(pullflow-icon) ${authoredCodeReviewsCount}`
   }
 }
