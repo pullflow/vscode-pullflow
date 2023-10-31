@@ -45,11 +45,11 @@
       },
       {
         "command": "pullflow.login",
-        "title": "Pullflow: login"
+        "title": "Pullflow: Login"
       },
       {
         "command": "pullflow.logout",
-        "title": "Pullflow: logout"
+        "title": "Pullflow: Logout"
       },
       {
         "command": "pullflow.reconnect",
@@ -62,6 +62,10 @@
       {
         "command": "pullflow.toggle-flow-state",
         "title": "Pullflow: Toggle Flow state"
+      },
+      {
+        "command": "pullflow.welcome-view",
+        "title": "Pullflow: Welcome"
       }
     ],
     "keybindings": [

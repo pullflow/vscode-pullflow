@@ -38,6 +38,7 @@ export type RepoChannelConnection = {
 }
 
 export type CacheObject = {
+  extensionId?: string
   pendingUserCodeReviews?: [UserCodeReview]
   userAuthoredCodeReviews?: [UserCodeReview]
   user?: User

@@ -16,10 +16,12 @@
         "dbaeumer",
         "nosources",
         "Pullflow",
+        "quickpicks",
         "Relogin",
         "thumbsup",
         "uuidv",
         "vscodeignore",
+        "Webviews",
         "Xids"
     ],
     "editor.tabSize": 2,
