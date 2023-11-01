@@ -23,10 +23,7 @@ export const Welcome = {
       Uri.joinPath(context.extensionUri, 'assets')
     )
     const stylePath = webview.asWebviewUri(
-      Uri.joinPath(
-        context.extensionUri,
-        'src/views/webviews/welcome/welcome.css'
-      )
+      Uri.joinPath(context.extensionUri, 'styles/welcome.css')
     )
 
     return `<!DOCTYPE html>
