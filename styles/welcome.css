@@ -1,7 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-}
-
 header {
   margin-top: 20px;
 }
@@ -30,18 +26,12 @@ header img {
 }
 
 #desc {
-  color: #f6f4f9;
   margin: 5px;
   font-size: 1.0em;
 }
 
 #intro p {
-  color: #c2c9d3;
   line-height: 1.5;
-}
-
-#intro strong {
-  color: #ffffff;
 }
 
 #main-img {
@@ -51,7 +41,6 @@ header img {
 }
 
 h3 {
-  color: #f6f4f9;
   font-size: 1.5em;
   margin-bottom: 10px;
 }
@@ -67,7 +56,6 @@ tbody tr {
 
 td {
   padding: 10px;
-  color: #c2c9d3;
 }
 
 #vs-code-icon {
@@ -89,4 +77,5 @@ td {
   margin-top: 20px;
   line-height: 1.5;
   margin-bottom: 15px;
+  color: #64748b
 }

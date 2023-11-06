@@ -50,10 +50,8 @@ export const Welcome = {
               some of the most innovative dev teams, including <strong> Epic Games, Avenue, Hear.com,
                 and RedwoodJS. </strong> </p>
             <p>
-              It offers seamless integration with your <strong>Slack</strong> and <strong>GitHub </strong> accounts. Simply
-              authenticate your accounts within Pullflow, and the
-              synchronization will be automatically established. New to Pullflow? <a href="https://app.pullflow.com"> Sign
-                In </a>
+              Sign in to your accounts with Pullflow to enable two-sync between GitHub and Slack. New to Pullflow? <a
+                href="https://pullflow.com">Sign up for free.</a>
             </p>
           </div>
           <div>
@@ -62,11 +60,11 @@ export const Welcome = {
           <div>
             <h3>Supercharge your workflow with Pullflow for VS Code</h3>
             <ul>
-              <p>●&nbsp;&nbsp;&nbsp;Effortlessly communicate across GitHub, Slack, and VS Code.</p>
-              <p>●&nbsp;&nbsp;&nbsp;Engage in meaningful conversations with contextual AI during PR discussions.</p>
-              <p>●&nbsp;&nbsp;&nbsp;Stay fully engaged in your ongoing code reviews.</p>
-              <p>●&nbsp;&nbsp;&nbsp;Stay updated in real-time on CI/CD and Automation.</p>
-              <p>●&nbsp;&nbsp;&nbsp;Execute actions on your code reviews using natural language.</p>
+              <li>&nbsp;&nbsp;&nbsp;Effortlessly communicate across GitHub, Slack, and VS Code.</li>
+              <li>&nbsp;&nbsp;&nbsp;Engage in meaningful conversations with contextual AI during PR discussions.</li>
+              <li>&nbsp;&nbsp;&nbsp;Stay fully engaged in your ongoing code reviews.</li>
+              <li>&nbsp;&nbsp;&nbsp;Stay updated in real-time on CI/CD and Automation.</li>
+              <li>&nbsp;&nbsp;&nbsp;Execute actions on your code reviews using natural language.</li>
             </ul>
           </div>
           <div>
@@ -82,13 +80,13 @@ export const Welcome = {
             <p>The extension comes with a set of actions designed to help you take care of your code review tasks and return
               to your flow state. Actions you can take on pull request from VS Code are: </p>
             <ul>
-              <li>&nbsp;&nbspOpen in Slack</li>
-              <li>&nbsp;&nbspOpen in GitHub</li>
-              <li>&nbsp;&nbspSend message to author/reviewer on Slack</li>
-              <li>&nbsp;&nbspApprove pull request</li>
-              <li>&nbsp;&nbspAdd labels on pull requests</li>
-              <li>&nbsp;&nbspAdd reviewers on pull requests</li>
-              <li>&nbsp;&nbspAdd assignees on pull requests</li>
+              <li>&nbsp;&nbsp;Open in Slack</li>
+              <li>&nbsp;&nbsp;Open in GitHub</li>
+              <li>&nbsp;&nbsp;Send message to author/reviewer on Slack</li>
+              <li>&nbsp;&nbsp;Approve pull request</li>
+              <li>&nbsp;&nbsp;Add labels on pull requests</li>
+              <li>&nbsp;&nbsp;Add reviewers on pull requests</li>
+              <li>&nbsp;&nbsp;Add assignees on pull requests</li>
             </ul>
             <div>
               <img src="${assetsPath}/pr-chat.gif" id="pr-dashboard" alt="PR-Chat-Image" />
@@ -154,9 +152,8 @@ export const Welcome = {
         </section>
       </section>
       <footer id="footer">
-        <i>This tool is designed by IDE-integration team at Pullflow for developers seeking a unified workspace that reduces
-          context-switching and enhances productivity by integrating codebase management, code review, and team
-          communication into a single interface. </i>
+        <i>The Pullflow team created this tool to help developers work more efficiently. It combines code management,
+          review, and team chat in one place, so you don't have to switch between different apps. </i>
         </div>
       </footer>
 
