@@ -15,7 +15,7 @@ The **Pullflow VS Code extension** brings all your code review workflows and col
 ---
 
 1. **Installation**: Install the “Pullflow” extension from the Visual Studio Marketplace or Open VSX Registry.
-2. **Login**: Click on “Sign in to Pullflow” from the VS Code status bar.
+2. **Sign in**: Click on “Sign in to Pullflow” from the VS Code status bar.
 3. **Ready to use**: The extension is now ready to use ✨
 
 ## Key Features

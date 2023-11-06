@@ -1,6 +1,6 @@
 import { ExtensionContext, commands, StatusBarItem, window, Uri } from 'vscode'
 import { log } from './utils/logger'
-import { Login } from './commands/login'
+import { SignIn } from './commands/signIn'
 import { StatusBar } from './views/statusBar/statusBar'
 import { Command } from './utils'
 import { initialize } from './utils/initialize'
@@ -44,7 +44,9 @@ export async function activate(context: ExtensionContext) {
   })
 
   context.subscriptions.push(
-    commands.registerCommand(Command.login, () => Login({ context, statusBar }))
+    commands.registerCommand(Command.signIn, () =>
+      SignIn({ context, statusBar })
+    )
   )
   context.subscriptions.push(
     commands.registerCommand(Command.logout, () =>

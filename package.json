@@ -44,8 +44,8 @@
         "title": "Pullflow: Active Pull Requests"
       },
       {
-        "command": "pullflow.login",
-        "title": "Pullflow: Login"
+        "command": "pullflow.signIn",
+        "title": "Pullflow: Sign in"
       },
       {
         "command": "pullflow.logout",

@@ -1,5 +1,5 @@
 export const Command = {
-  login: 'pullflow.login',
+  signIn: 'pullflow.signIn',
   activePullRequests: 'pullflow.active-pull-requests',
   logout: 'pullflow.logout',
   reconnect: 'pullflow.reconnect',

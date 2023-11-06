@@ -26,7 +26,7 @@ const statusBarProperties = {
     tooltip: 'Pullflow - Active Pull Requests',
   },
   signedOut: {
-    command: Command.login,
+    command: Command.signIn,
     backgroundColor: new ThemeColor(Theme.statusBar.error),
     text: '⚠ Sign in to Pullflow',
     tooltip: 'Sign in to Pullflow account',
