@@ -43,7 +43,7 @@ export const PullRequestState = {
     if (codeReviews.requireRelogin) {
       log.error(codeReviews.error, module)
       window.showInformationMessage(`Pullflow: Please login again`)
-      commands.executeCommand(Command.logout)
+      commands.executeCommand(Command.signOut)
       return
     }
 

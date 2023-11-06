@@ -120,7 +120,7 @@ export const Welcome = {
                   <td>Pullflow: Sign in</td>
                 </tr>
                 <tr>
-                  <td>Pullflow: Logout</td>
+                  <td>Pullflow: Sign out</td>
                 </tr>
                 <tr>
                   <td>Pullflow: Reconnect</td>

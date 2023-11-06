@@ -6,7 +6,7 @@ import { Command } from './utils'
 import { initialize } from './utils/initialize'
 import { Store } from './utils/store'
 import { Reconnect } from './commands/reconnect'
-import { Logout } from './commands/logout'
+import { SignOut } from './commands/signOut'
 import { ActivePullRequests } from './commands/activePullRequests'
 import { Authorization } from './utils/authorization'
 import { ToggleFlowState } from './commands/toggleFlowState'
@@ -49,8 +49,8 @@ export async function activate(context: ExtensionContext) {
     )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.logout, () =>
-      Logout({
+    commands.registerCommand(Command.signOut, () =>
+      SignOut({
         context,
         statusBar,
         pollIntervalId,

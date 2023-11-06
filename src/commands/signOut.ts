@@ -4,7 +4,7 @@ import { StatusBar } from '../views/statusBar/statusBar'
 import { StatusBarState } from '../utils'
 import { Store } from '../utils/store'
 
-export const Logout = async ({
+export const SignOut = async ({
   context,
   statusBar,
   pollIntervalId,
