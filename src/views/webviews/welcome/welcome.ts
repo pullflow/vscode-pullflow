@@ -117,10 +117,10 @@ export const Welcome = {
                   <td>Pullflow: Active Pull Requests (Ctrl/Cmd+Shift+,)</td>
                 </tr>
                 <tr>
-                  <td>Pullflow: Login</td>
+                  <td>Pullflow: Sign in</td>
                 </tr>
                 <tr>
-                  <td>Pullflow: Logout</td>
+                  <td>Pullflow: Sign out</td>
                 </tr>
                 <tr>
                   <td>Pullflow: Reconnect</td>
