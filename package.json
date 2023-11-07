@@ -2,8 +2,8 @@
   "name": "pullflow",
   "publisher": "Pullflow",
   "displayName": "Pullflow",
-  "description": "Enhance your code review process by consolidating interactions within VS Code and directly integrating with platforms like Slack and GitHub.",
-  "version": "1.0.0",
+  "description": "Code review collaboration across GitHub, Slack, and VS Code.",
+  "version": "1.0.1",
   "preview": true,
   "license": "MIT",
   "engines": {
@@ -14,11 +14,14 @@
   },
   "icon": "assets/pullflow.png",
   "categories": [
-    "SCM Providers",
+    "Programming Languages",
+    "Machine Learning",
+    "Education",
+    "Snippets",
     "Other"
   ],
   "galleryBanner": {
-    "color": "#795DBD",
+    "color": "#F6F4F9",
     "theme": "light"
   },
   "private": true,
@@ -41,12 +44,12 @@
         "title": "Pullflow: Active Pull Requests"
       },
       {
-        "command": "pullflow.login",
-        "title": "Pullflow: login"
+        "command": "pullflow.signIn",
+        "title": "Pullflow: Sign in"
       },
       {
-        "command": "pullflow.logout",
-        "title": "Pullflow: logout"
+        "command": "pullflow.signOut",
+        "title": "Pullflow: Sign out"
       },
       {
         "command": "pullflow.reconnect",
@@ -59,6 +62,10 @@
       {
         "command": "pullflow.toggle-flow-state",
         "title": "Pullflow: Toggle Flow state"
+      },
+      {
+        "command": "pullflow.welcome-view",
+        "title": "Pullflow: Welcome"
       }
     ],
     "keybindings": [

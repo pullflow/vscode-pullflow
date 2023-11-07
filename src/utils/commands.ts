@@ -1,7 +1,8 @@
 export const Command = {
-  login: 'pullflow.login',
+  signIn: 'pullflow.signIn',
   activePullRequests: 'pullflow.active-pull-requests',
-  logout: 'pullflow.logout',
+  signOut: 'pullflow.signOut',
   reconnect: 'pullflow.reconnect',
   toggleFlowState: 'pullflow.toggle-flow-state',
+  welcomeView: 'pullflow.welcome-view',
 }

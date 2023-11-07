@@ -43,7 +43,7 @@ export const PullRequestState = {
     if (codeReviews.requireRelogin) {
       log.error(codeReviews.error, module)
       window.showInformationMessage(`Pullflow: Please login again`)
-      commands.executeCommand(Command.logout)
+      commands.executeCommand(Command.signOut)
       return
     }
 
@@ -52,9 +52,6 @@ export const PullRequestState = {
       if (errorCount.count >= MAX_ERROR_COUNT) {
         StatusBar.update({ context, statusBar, state: StatusBarState.Error })
       }
-      window.showErrorMessage(
-        `Pullflow: Couldn't fetch pull requests. ${codeReviews.error.message}`
-      )
       return
     }
     await Store.set(context, {

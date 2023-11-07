@@ -1,22 +1,24 @@
 import { ExtensionContext, commands, StatusBarItem, window, Uri } from 'vscode'
 import { log } from './utils/logger'
-import { Login } from './commands/login'
+import { SignIn } from './commands/signIn'
 import { StatusBar } from './views/statusBar/statusBar'
 import { Command } from './utils'
 import { initialize } from './utils/initialize'
 import { Store } from './utils/store'
 import { Reconnect } from './commands/reconnect'
-import { Logout } from './commands/logout'
+import { SignOut } from './commands/signOut'
 import { ActivePullRequests } from './commands/activePullRequests'
 import { Authorization } from './utils/authorization'
 import { ToggleFlowState } from './commands/toggleFlowState'
+import { Welcome } from './views/webviews/welcome/welcome'
 
 const module = 'extension.ts'
 
 export async function activate(context: ExtensionContext) {
   log.info('activating extension', module)
 
-  await checkSessionAndLogin(context)
+  checkFirstActivation(context)
+
   const statusBar: StatusBarItem = await StatusBar.activate(context)
   const { pollIntervalId, focusStateEvent, presenceInterval } =
     await initialize({
@@ -42,11 +44,13 @@ export async function activate(context: ExtensionContext) {
   })
 
   context.subscriptions.push(
-    commands.registerCommand(Command.login, () => Login({ context, statusBar }))
+    commands.registerCommand(Command.signIn, () =>
+      SignIn({ context, statusBar })
+    )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.logout, () =>
-      Logout({
+    commands.registerCommand(Command.signOut, () =>
+      SignOut({
         context,
         statusBar,
         pollIntervalId,
@@ -70,17 +74,22 @@ export async function activate(context: ExtensionContext) {
       ToggleFlowState(context, statusBar)
     )
   )
+  context.subscriptions.push(
+    commands.registerCommand(Command.welcomeView, () => {
+      Welcome.show(context)
+    })
+  )
 }
 
 // this method is called when your extension is deactivated
 export function deactivate() {}
 
-const checkSessionAndLogin = async (context: ExtensionContext) => {
-  const session = await Authorization.currentSession(context)
-  if (!session) {
-    window.showInformationMessage(
-      `Pullflow: Please login to continue using extension`
-    )
-    commands.executeCommand(Command.login)
+const checkFirstActivation = (context: ExtensionContext) => {
+  const isFirstActivation = !Store.get(context)?.extensionId
+
+  if (isFirstActivation) {
+    commands.executeCommand(Command.welcomeView)
+    const extensionId = `${context.extension.packageJSON.publisher}.${context.extension.packageJSON.name}`
+    Store.set(context, { extensionId })
   }
 }
