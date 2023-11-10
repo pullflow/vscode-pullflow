@@ -63,6 +63,16 @@ const CODE_REVIEW_QUERY = `query codeReviews {
   }
 }
 `
+
+const REFRESH_PULL_REQUEST_MUTATION = `
+  mutation refreshCodeReviewsForVscode($authorXids: [String]!) {
+    refreshCodeReviewsForVscode(authorXids: $authorXids){
+      success
+      message
+    }
+}
+`
+
 export const ActivePullRequestsApi = {
   getCodeReviews: async ({
     context,
@@ -79,6 +89,29 @@ export const ActivePullRequestsApi = {
       return data.userCodeReviews
     } catch (e) {
       log.error(`error in fetching pull requests, ${e}`, module)
+      return { error: e }
+    }
+  },
+
+  refreshCodeReviews: async ({
+    context,
+    accessToken,
+    authorXids,
+  }: {
+    accessToken?: string
+    context: ExtensionContext
+    authorXids: string[]
+  }) => {
+    log.info(`refreshing pull requests`, module)
+
+    const pullflowApi = new PullflowApi(context, accessToken)
+    try {
+      const data = await pullflowApi.fetch(REFRESH_PULL_REQUEST_MUTATION, {
+        authorXids,
+      })
+      return data.refreshCodeReviewsForVscode
+    } catch (e) {
+      log.error(`error in refreshing pull requests, ${e}`, module)
       return { error: e }
     }
   },
