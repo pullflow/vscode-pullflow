@@ -1,18 +1,18 @@
 import { QuickPickItem, window } from 'vscode'
 
 export const QuickPick = {
-  create: ({
+  create: <Type extends QuickPickItem>({
     items,
     title,
     placeholder,
     onDidChangeSelection,
   }: {
-    items: QuickPickItem[]
+    items: Type[]
     title: string
     placeholder: string
-    onDidChangeSelection: (selection: readonly QuickPickItem[]) => void
+    onDidChangeSelection: (selection: readonly Type[]) => void
   }) => {
-    const quickPick = window.createQuickPick()
+    const quickPick = window.createQuickPick<Type>()
     quickPick.items = items
     quickPick.title = title
     quickPick.placeholder = placeholder
