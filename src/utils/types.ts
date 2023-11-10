@@ -112,6 +112,7 @@ export type ApiVariables =
   | AddAssigneeVariables
   | RequestReviewVariables
   | CodeReviewApproveVariables
+  | RefreshCodeReviewsVariables
 export type ThreadMessageVariables = {
   body: string
   parentMessageXid: string
@@ -152,4 +153,7 @@ export type CodeReviewApproveVariables = {
 export type RepoInfo = {
   repoName?: string
   branch?: string
+}
+export type RefreshCodeReviewsVariables = {
+  authorXids: string[]
 }

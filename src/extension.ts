@@ -11,6 +11,7 @@ import { ActivePullRequests } from './commands/activePullRequests'
 import { Authorization } from './utils/authorization'
 import { ToggleFlowState } from './commands/toggleFlowState'
 import { Welcome } from './views/webviews/welcome/welcome'
+import { RefreshPullRequests } from './commands/refreshPullRequests'
 
 const module = 'extension.ts'
 
@@ -77,6 +78,11 @@ export async function activate(context: ExtensionContext) {
   context.subscriptions.push(
     commands.registerCommand(Command.welcomeView, () => {
       Welcome.show(context)
+    })
+  )
+  context.subscriptions.push(
+    commands.registerCommand(Command.refreshPullRequests, () => {
+      RefreshPullRequests(context, statusBar)
     })
   )
 }
