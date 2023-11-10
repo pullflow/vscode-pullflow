@@ -66,6 +66,10 @@
       {
         "command": "pullflow.welcome-view",
         "title": "Pullflow: Welcome"
+      },
+      {
+        "command": "pullflow.refresh-pull-requests",
+        "title": "Pullflow: Refresh Active Pull Requests"
       }
     ],
     "keybindings": [

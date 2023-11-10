@@ -5,4 +5,5 @@ export const Command = {
   reconnect: 'pullflow.reconnect',
   toggleFlowState: 'pullflow.toggle-flow-state',
   welcomeView: 'pullflow.welcome-view',
+  refreshPullRequests: 'pullflow.refresh-pull-requests',
 }
