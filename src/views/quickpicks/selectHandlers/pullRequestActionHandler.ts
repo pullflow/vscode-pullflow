@@ -93,6 +93,13 @@ export const pullRequestActionHandler = async ({
       context,
     })
   }
+  if (selectedItem?.label === ActivePullRequestActions.Refresh) {
+    await PullRequestQuickActions.refresh({
+      codeReviewId: codeReviewItem.id,
+      context,
+      statusBar,
+    })
+  }
 }
 
 const openLink = (link: string) => env.openExternal(Uri.parse(link))

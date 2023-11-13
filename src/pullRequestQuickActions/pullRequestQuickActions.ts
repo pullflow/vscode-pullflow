@@ -11,6 +11,7 @@ import { spaceUserPicker } from '../views/quickpicks/spaceUserPicker'
 import { Presence } from '../models/presence'
 import { Store } from '../utils/store'
 import { StatusBar } from '../views/statusBar/statusBar'
+import { initialize } from '../utils/initialize'
 import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
 import moment = require('moment')
 
@@ -210,6 +211,42 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+  },
+
+  refresh: async ({
+    codeReviewId,
+    context,
+    statusBar,
+  }: {
+    codeReviewId: string
+    context: ExtensionContext
+    statusBar: StatusBarItem
+  }) => {
+    const session = await Authorization.currentSession(context)
+    const response = await PullRequestQuickActionsApi.refresh({
+      codeReviewId,
+      authToken: session?.accessToken ?? '',
+      context,
+    })
+    if (response.error || response.message) {
+      window.showInformationMessage(
+        `${
+          response.message
+            ? response.message
+            : 'Something went wrong, failed to refresh pull request'
+        }`
+      )
+      return false
+    }
+
+    await initialize({ context, statusBar }) // refetch pull requests
+
+    await Presence.set({
+      status: PresenceStatus.Active,
+      context,
+      statusBar,
+    })
+    return true
   },
   setReminder: ({
     codeReview,
