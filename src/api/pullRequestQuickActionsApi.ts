@@ -168,7 +168,7 @@ export const PullRequestQuickActionsApi = {
     }
   },
 
-  refreshCodeReview: async ({
+  refresh: async ({
     codeReviewId,
     authToken,
     context,

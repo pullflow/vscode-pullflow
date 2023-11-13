@@ -33,6 +33,9 @@ const getActionItems = (type: CodeReviewType) => [
     label: ActivePullRequestActions.RequestReview,
   },
   { label: ActivePullRequestActions.SetReminder },
+  {
+    label: ActivePullRequestActions.Refresh,
+  },
 ]
 
 export const pullRequestActionPicker = ({
