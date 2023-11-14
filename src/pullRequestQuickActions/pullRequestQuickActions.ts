@@ -11,6 +11,8 @@ import { spaceUserPicker } from '../views/quickpicks/spaceUserPicker'
 import { Presence } from '../models/presence'
 import { Store } from '../utils/store'
 import { StatusBar } from '../views/statusBar/statusBar'
+import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
+import moment = require('moment')
 
 export const PullRequestQuickActions = {
   applyLabel: async ({
@@ -209,4 +211,37 @@ export const PullRequestQuickActions = {
       statusBar,
     })
   },
+  setReminder: ({
+    codeReview,
+    context,
+  }: {
+    codeReview: CodeReviewSelectionItem
+    context: ExtensionContext
+  }) => {
+    const onDidChangeSelection = async (item: readonly TimeSelectionItem[]) => {
+      if (!item[0]?.label) return false
+      const selectedTime = item[0]
+      const session = await Authorization.currentSession(context)
+      const duration = computeTime(selectedTime.value)
+      const response = await PullRequestQuickActionsApi.setReminder({
+        codeReviewId: codeReview.id,
+        duration,
+        authToken: session?.accessToken ?? '',
+        context,
+      })
+      if (response.message || response.error || !response.success) {
+        window.showInformationMessage(
+          'Something went wrong, failed to set reminder'
+        )
+        return false
+      }
+      window.showInformationMessage(`Pullflow: Successfully set reminder.`)
+      return true
+    }
+
+    timePicker({ title: 'Remind me in', onDidChangeSelection })
+  },
 }
+
+const computeTime = (minutes: number) =>
+  Math.floor(moment().add(minutes, 'minutes').valueOf() / 1000)

@@ -41,6 +41,15 @@ const REQUEST_REVIEW = `
   }
 `
 
+const SET_REMINDER = `
+mutation setCodeReviewReminder($codeReviewId: String!, $duration: Int!) {
+  setCodeReviewReminder(codeReviewId: $codeReviewId, duration: $duration) {
+    success
+    message
+  }
+}
+`
+
 export const PullRequestQuickActionsApi = {
   addLabels: async ({
     authToken,
@@ -144,6 +153,32 @@ export const PullRequestQuickActionsApi = {
         eventProvider,
       })
       return data.requestReview
+    } catch (error) {
+      log.error(`error in requesting review, ${error}`, module)
+      return { error }
+    }
+  },
+
+  setReminder: async ({
+    duration,
+    codeReviewId,
+    authToken,
+    context,
+  }: {
+    duration: number
+    codeReviewId: string
+    authToken: string
+    context: ExtensionContext
+  }) => {
+    log.info(`setting reminder: ${{ duration, codeReviewId }}}`, module)
+
+    const pullflowApi = new PullflowApi(context, authToken)
+    try {
+      const data = await pullflowApi.fetch(SET_REMINDER, {
+        codeReviewId,
+        duration,
+      })
+      return data.setCodeReviewReminder
     } catch (error) {
       log.error(`error in requesting review, ${error}`, module)
       return { error }

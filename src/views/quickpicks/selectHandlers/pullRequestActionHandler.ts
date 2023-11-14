@@ -87,6 +87,12 @@ export const pullRequestActionHandler = async ({
       statusBar,
     })
   }
+  if (selectedItem?.label === ActivePullRequestActions.SetReminder) {
+    await PullRequestQuickActions.setReminder({
+      codeReview: codeReviewItem,
+      context,
+    })
+  }
 }
 
 const openLink = (link: string) => env.openExternal(Uri.parse(link))

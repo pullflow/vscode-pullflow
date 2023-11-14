@@ -75,6 +75,10 @@ export interface ReviewerSelectionItem extends QuickPickItem {
   hasUser: boolean
   xid: string
 }
+export interface SpaceUserSelectionItem extends QuickPickItem {
+  label: string
+  description: string
+}
 export enum CodeReviewType {
   Pending,
   Authored,
@@ -89,6 +93,7 @@ export enum ActivePullRequestActions {
   ApplyLabel = 'Add label',
   AddAssignee = 'Add assignee',
   RequestReview = 'Add reviewer',
+  SetReminder = 'Set a reminder',
 }
 export type SpaceUser = {
   id: string
@@ -112,6 +117,7 @@ export type ApiVariables =
   | AddAssigneeVariables
   | RequestReviewVariables
   | CodeReviewApproveVariables
+  | CodeReviewRemindersVariables
 export type ThreadMessageVariables = {
   body: string
   parentMessageXid: string
@@ -148,6 +154,10 @@ export type RequestReviewVariables = {
 export type CodeReviewApproveVariables = {
   codeReviewId: string
   body?: string
+}
+export type CodeReviewRemindersVariables = {
+  codeReviewId: string
+  duration: number
 }
 export type RepoInfo = {
   repoName?: string
