@@ -11,9 +11,9 @@ import { spaceUserPicker } from '../views/quickpicks/spaceUserPicker'
 import { Presence } from '../models/presence'
 import { Store } from '../utils/store'
 import { StatusBar } from '../views/statusBar/statusBar'
-import { initialize } from '../utils/initialize'
 import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
 import moment = require('moment')
+import { PullRequestState } from '../utils/pullRequestsState'
 
 export const PullRequestQuickActions = {
   applyLabel: async ({
@@ -239,7 +239,12 @@ export const PullRequestQuickActions = {
       return false
     }
 
-    await initialize({ context, statusBar }) // refetch pull requests
+    await PullRequestState.update({
+      context,
+      statusBar,
+      isLogin: true,
+      errorCount: { count: 0 },
+    }) // refetch pull requests
 
     await Presence.set({
       status: PresenceStatus.Active,
