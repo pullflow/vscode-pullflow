@@ -13,6 +13,7 @@ import { Store } from '../utils/store'
 import { StatusBar } from '../views/statusBar/statusBar'
 import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
 import moment = require('moment')
+import { PullRequestState } from '../utils/pullRequestsState'
 
 export const PullRequestQuickActions = {
   applyLabel: async ({
@@ -210,6 +211,47 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+  },
+
+  refresh: async ({
+    codeReviewId,
+    context,
+    statusBar,
+  }: {
+    codeReviewId: string
+    context: ExtensionContext
+    statusBar: StatusBarItem
+  }) => {
+    const session = await Authorization.currentSession(context)
+    const response = await PullRequestQuickActionsApi.refresh({
+      codeReviewId,
+      authToken: session?.accessToken ?? '',
+      context,
+    })
+    if (response.error || response.message) {
+      window.showInformationMessage(
+        `${
+          response.message
+            ? response.message
+            : 'Something went wrong, failed to refresh pull request'
+        }`
+      )
+      return false
+    }
+
+    await PullRequestState.update({
+      context,
+      statusBar,
+      isLogin: true,
+      errorCount: { count: 0 },
+    }) // refetch pull requests
+
+    await Presence.set({
+      status: PresenceStatus.Active,
+      context,
+      statusBar,
+    })
+    return true
   },
   setReminder: ({
     codeReview,
