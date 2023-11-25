@@ -20,13 +20,13 @@ const STATUS_BAR_ICON_PREVIEW = false
 
 const statusBarProperties = {
   signedIn: {
-    command: Command.activePullRequests,
+    command: Command('activePullRequests'),
     backgroundColor: new ThemeColor(Theme.statusBar.success),
     text: '',
     tooltip: 'Pullflow - Active Pull Requests',
   },
   signedOut: {
-    command: Command.signIn,
+    command: Command('signIn'),
     backgroundColor: new ThemeColor(Theme.statusBar.error),
     text: '⚠ Sign in to Pullflow',
     tooltip: 'Sign in to Pullflow account',
@@ -38,7 +38,7 @@ const statusBarProperties = {
     tooltip: '',
   },
   error: {
-    command: Command.reconnect,
+    command: Command('reconnect'),
     text: '$(pullflow-icon) Offline',
     tooltip: 'Reconnect',
   },

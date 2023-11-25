@@ -44,12 +44,12 @@ export async function activate(context: ExtensionContext) {
   })
 
   context.subscriptions.push(
-    commands.registerCommand(Command.signIn, () =>
+    commands.registerCommand(Command('signIn'), () =>
       SignIn({ context, statusBar })
     )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.signOut, () =>
+    commands.registerCommand(Command('signOut'), () =>
       SignOut({
         context,
         statusBar,
@@ -60,22 +60,22 @@ export async function activate(context: ExtensionContext) {
     )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.reconnect, () =>
+    commands.registerCommand(Command('reconnect'), () =>
       Reconnect(context, statusBar)
     )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.activePullRequests, () =>
+    commands.registerCommand(Command('activePullRequests'), () =>
       ActivePullRequests(context, statusBar)
     )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.toggleFlowState, () =>
+    commands.registerCommand(Command('toggleFlowState'), () =>
       ToggleFlowState(context, statusBar)
     )
   )
   context.subscriptions.push(
-    commands.registerCommand(Command.welcomeView, () => {
+    commands.registerCommand(Command('welcomeView'), () => {
       Welcome.show(context)
     })
   )
@@ -88,7 +88,7 @@ const checkFirstActivation = (context: ExtensionContext) => {
   const isFirstActivation = !Store.get(context)?.extensionId
 
   if (isFirstActivation) {
-    commands.executeCommand(Command.welcomeView)
+    commands.executeCommand(Command('welcomeView'))
     const extensionId = `${context.extension.packageJSON.publisher}.${context.extension.packageJSON.name}`
     Store.set(context, { extensionId })
   }

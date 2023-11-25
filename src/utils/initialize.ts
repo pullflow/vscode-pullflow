@@ -107,7 +107,7 @@ const setSpaceUsers = async ({
     window.showInformationMessage(
       `Error in fetching space users ${spaceUsers.error || spaceUsers.message}`
     )
-    commands.executeCommand(Command.signOut)
+    commands.executeCommand(Command('signOut'))
     return
   }
 

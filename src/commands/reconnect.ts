@@ -29,7 +29,7 @@ export const Reconnect = async (
   if (codeReviews.requireRelogin) {
     log.error(codeReviews.error, module)
     window.showInformationMessage(`Pullflow: Please login again`)
-    commands.executeCommand(Command.signOut)
+    commands.executeCommand(Command('signOut'))
     return
   }
 
@@ -48,7 +48,7 @@ export const Reconnect = async (
   })
   StatusBar.update({ context, statusBar, state: StatusBarState.SignedIn })
 
-  commands.executeCommand(Command.activePullRequests)
+  commands.executeCommand(Command('activePullRequests'))
 
   return
 }
