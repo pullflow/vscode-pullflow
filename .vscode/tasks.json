@@ -18,6 +18,21 @@
 			}
 		},
 		{
+			"label": "Revert development mode",
+			"type": "npm",
+			"script": "revert-dev",
+			"problemMatcher": "$ts-webpack-watch",
+			"isBackground": true,
+			"presentation": {
+				"reveal": "never",
+				"group": "watchers"
+			},
+			"group": {
+				"kind": "build",
+				"isDefault": false
+			}
+		},
+		{
 			"type": "npm",
 			"script": "watch-tests",
 			"problemMatcher": "$tsc-watch",
