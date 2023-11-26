@@ -175,8 +175,10 @@
   "scripts": {
     "vscode:prepublish": "yarn run package",
     "compile": "webpack",
-    "watch": "webpack --watch",
-    "package": "webpack --mode production --devtool hidden-source-map",
+    "setup-dev": "node scripts/generatePackageJson development",
+    "revert-dev": "node scripts/generatePackageJson",
+    "watch": "yarn setup-dev && webpack --watch",
+    "package": "yarn revert-dev && webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "yarn compile && yarn run lint",
@@ -198,7 +200,7 @@
     "mocha": "^10.0.0",
     "prettier": "^2.8.1",
     "ts-loader": "^9.3.1",
-    "typescript": "^4.7.4",
+    "typescript": "^5.3.2",
     "webpack": "^5.74.0",
     "webpack-cli": "^4.10.0"
   },
