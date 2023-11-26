@@ -38,7 +38,7 @@ const setupDev = async () => {
 }
 
 const revertDev = async () => {
-  console.log(`🤞 Generating for production\n`)
+  console.log(`🤞 Reverting development changes in package.json\n`)
   const jsonData = await readFile()
   jsonData.name = removeDev(jsonData.name)
   jsonData.displayName = removeDev(jsonData.displayName)
@@ -54,7 +54,7 @@ const revertDev = async () => {
     })
   )
   await writeFile(jsonData)
-  console.log(`✓ package.json updated for production`)
+  console.log(`✓ package.json development changes reverted!`)
 }
 
 const appendDev = (value) => value.replace(/pullflow/i, '$&-dev')
