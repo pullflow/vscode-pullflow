@@ -1,5 +1,4 @@
 import { ExtensionContext } from 'vscode'
-import fetch from 'node-fetch'
 import { ApiVariables } from './types'
 import { AppConfig } from './appConfig'
 
