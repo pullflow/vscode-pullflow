@@ -177,7 +177,7 @@
     "compile": "webpack",
     "setup-dev": "node scripts/generatePackageJson development",
     "revert-dev": "node scripts/generatePackageJson",
-    "watch": "yarn setup-dev && webpack --watch",
+    "watch": "yarn setup-dev && webpack --watch --node-env development",
     "package": "yarn revert-dev && webpack --mode production --devtool hidden-source-map",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",

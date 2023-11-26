@@ -9,6 +9,9 @@
 			"name": "Run Extension",
 			"type": "extensionHost",
 			"request": "launch",
+			"env": {
+				"NODE_ENV": "development"
+			},
 			"args": [
 				"--extensionDevelopmentPath=${workspaceFolder}"
 			],
