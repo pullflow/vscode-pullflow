@@ -25,6 +25,7 @@ jobs:
         run: |
           yarn
           yarn compile
+          yarn revert-dev
           yarn lint
           yarn test
 
