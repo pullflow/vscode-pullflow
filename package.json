@@ -3,7 +3,7 @@
   "publisher": "Pullflow",
   "displayName": "Pullflow",
   "description": "Code review collaboration across GitHub, Slack, and VS Code.",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "preview": true,
   "license": "MIT",
   "engines": {
@@ -167,7 +167,7 @@
           "fontCharacter": "\\e908"
         }
       },
-      "flow-state-icon":{
+      "flow-state-icon": {
         "description": "Flow-state icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
