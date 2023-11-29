@@ -3,7 +3,7 @@ import { Store } from '../utils/store'
 import { UserPresence } from './userPresence'
 import { log } from '../utils/logger'
 
-const USER_FLOW_INTERVAL = 1000 * 60 // 1 minute
+const USER_FLOW_INTERVAL = 1000 * 60 * 2 // 1 minute
 const module = 'TrackUserFlow.ts'
 
 export const trackUserPresence = (
