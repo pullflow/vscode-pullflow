@@ -56,10 +56,6 @@
         "title": "Pullflow: Reconnect"
       },
       {
-        "command": "pullflow.track-user-flow",
-        "title": "Pullflow: Track User Flow"
-      },
-      {
         "command": "pullflow.toggle-flow-state",
         "title": "Pullflow: Toggle Flow state"
       },
@@ -167,7 +163,7 @@
           "fontCharacter": "\\e908"
         }
       },
-      "flow-state-icon":{
+      "flow-state-icon": {
         "description": "Flow-state icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
