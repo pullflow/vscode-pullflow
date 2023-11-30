@@ -5,13 +5,7 @@ import { AppConfig } from './appConfig'
 
 export class PullflowApi {
   apiUrl: string
-  options: {
-    method: string
-    headers: {
-      authorization: string
-      version: string
-    }
-  }
+  options: {}
 
   constructor(
     context: ExtensionContext,
@@ -23,6 +17,8 @@ export class PullflowApi {
       headers: {
         authorization: accessToken ?? '',
         version: context.extension.packageJSON.version,
+        Accept: 'application/json, text/plain',
+        'Content-Type': 'application/json;charset=UTF-8',
       },
     }
     this.apiUrl = AppConfig.pullflow.graphqlUrl

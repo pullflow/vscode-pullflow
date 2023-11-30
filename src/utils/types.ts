@@ -93,6 +93,7 @@ export enum ActivePullRequestActions {
   ApplyLabel = 'Add label',
   AddAssignee = 'Add assignee',
   RequestReview = 'Add reviewer',
+  Refresh = 'Refresh',
   SetReminder = 'Set a reminder',
 }
 export type SpaceUser = {
@@ -118,6 +119,7 @@ export type ApiVariables =
   | RequestReviewVariables
   | CodeReviewApproveVariables
   | CodeReviewRemindersVariables
+  | RefreshCodeReviewVariables
 export type ThreadMessageVariables = {
   body: string
   parentMessageXid: string
@@ -162,4 +164,7 @@ export type CodeReviewRemindersVariables = {
 export type RepoInfo = {
   repoName?: string
   branch?: string
+}
+export type RefreshCodeReviewVariables = {
+  codeReviewId: string
 }

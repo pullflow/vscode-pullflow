@@ -104,7 +104,7 @@ function getStatusBarText({
   } = Store.get(context)
 
   const presenceIcon =
-    previousPresenceStatus === PresenceStatus.Flow ? '$(symbol-event)' : ''
+    previousPresenceStatus === PresenceStatus.Flow ? '$(flow-state-icon)' : ''
   const errorIcon = showErrorIcon ? '  $(warning)  ' : ''
 
   if (!pendingUserCodeReviews && !userAuthoredCodeReviews)

@@ -3,14 +3,14 @@
   "publisher": "Pullflow",
   "displayName": "Pullflow",
   "description": "Code review collaboration across GitHub, Slack, and VS Code.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "preview": true,
   "license": "MIT",
   "engines": {
     "vscode": "^1.70.0"
   },
   "author": {
-    "name": "IDE integration team at Pullflow"
+    "name": "Pullflow"
   },
   "icon": "assets/pullflow.png",
   "categories": [
@@ -112,59 +112,66 @@
         }
       },
       "checks-running-icon": {
-        "description": "checks running icon",
+        "description": "Checks running icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e903"
         }
       },
       "checks-failed-icon": {
-        "description": "checks failed icon",
+        "description": "Checks failed icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e904"
         }
       },
       "checks-skipped-icon": {
-        "description": "checks skipped icon",
+        "description": "Checks skipped icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e901"
         }
       },
       "checks-passed-icon": {
-        "description": "checks passed icon",
+        "description": "Checks passed icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e902"
         }
       },
       "review-comment-icon": {
-        "description": "review comment icon",
+        "description": "Review comment icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e907"
         }
       },
       "pr-open-icon": {
-        "description": "pr open icon",
+        "description": "PR open icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e909"
         }
       },
       "request-changes-icon": {
-        "description": "request changes icon",
+        "description": "Request changes icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e906"
         }
       },
       "draft-pr-icon": {
-        "description": "draft pr icon",
+        "description": "Draft PR icon",
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e908"
+        }
+      },
+      "flow-state-icon": {
+        "description": "Flow-state icon",
+        "default": {
+          "fontPath": "./assets/Pullflow.woff",
+          "fontCharacter": "\\e90c"
         }
       }
     }
