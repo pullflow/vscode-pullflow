@@ -57,7 +57,7 @@
       },
       {
         "command": "pullflow.toggle-flow-state",
-        "title": "Pullflow: Toggle Flow state"
+        "title": "Pullflow: Toggle Flow State"
       },
       {
         "command": "pullflow.welcome-view",
