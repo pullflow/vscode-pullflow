@@ -56,12 +56,8 @@
         "title": "Pullflow: Reconnect"
       },
       {
-        "command": "pullflow.track-user-flow",
-        "title": "Pullflow: Track User Flow"
-      },
-      {
         "command": "pullflow.toggle-flow-state",
-        "title": "Pullflow: Toggle Flow state"
+        "title": "Pullflow: Toggle Flow State"
       },
       {
         "command": "pullflow.welcome-view",

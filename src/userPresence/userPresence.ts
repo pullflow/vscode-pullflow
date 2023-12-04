@@ -21,15 +21,11 @@ export const UserPresence = {
       lastFocusedTime,
       lastKeyStrokeTime,
       isFocused,
-      previousPresenceStatus,
     } = Store.get(context)
 
     if (currentKeyStrokeCount) {
       // if the user has typed enough keys and was not in flow before
-      if (
-        currentKeyStrokeCount >= KEY_STROKE_COUNT &&
-        previousPresenceStatus !== PresenceStatus.Flow
-      ) {
+      if (currentKeyStrokeCount >= KEY_STROKE_COUNT) {
         await Presence.set({
           status: PresenceStatus.Flow,
           context,
@@ -46,10 +42,7 @@ export const UserPresence = {
       new Date().getTime() - (lastKeyStrokeTime || 0)
 
     // if user has not typed anything in a while and was not active before
-    if (
-      timeSinceLastKeyStroke > KEY_STROKE_INTERVAL &&
-      previousPresenceStatus !== PresenceStatus.Active
-    ) {
+    if (timeSinceLastKeyStroke > KEY_STROKE_INTERVAL) {
       await Store.set(context, { keyStrokeCount: 0 })
       if (isFocused && lastFocusedTime) {
         const timeSinceLastFocus = new Date().getTime() - lastFocusedTime
