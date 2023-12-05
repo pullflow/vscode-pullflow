@@ -1,30 +1,30 @@
-import { ExtensionContext, ViewColumn, Webview, window, Uri } from 'vscode'
+import { ExtensionContext, ViewColumn, Webview, window, Uri } from "vscode";
 
 const WelcomeView = {
-  title: 'Welcome to Pullflow',
-  type: 'welcome-view',
-}
+  title: "Welcome to Pullflow",
+  type: "welcome-view",
+};
 
 export const Welcome = {
   show: (context: ExtensionContext) => {
-    const column = window.activeTextEditor?.viewColumn || ViewColumn.One
+    const column = window.activeTextEditor?.viewColumn || ViewColumn.One;
     const panel = window.createWebviewPanel(
       WelcomeView.type,
       WelcomeView.title,
       column
-    )
-    panel.iconPath = Uri.joinPath(context.extensionUri, 'assets/pullflow.png')
-    panel.webview.html = Welcome.getHtml(panel.webview, context)
-    panel.reveal(column)
+    );
+    panel.iconPath = Uri.joinPath(context.extensionUri, "assets/pullflow.png");
+    panel.webview.html = Welcome.getHtml(panel.webview, context);
+    panel.reveal(column);
   },
 
   getHtml: (webview: Webview, context: ExtensionContext) => {
     const assetsPath = webview.asWebviewUri(
-      Uri.joinPath(context.extensionUri, 'assets')
-    )
+      Uri.joinPath(context.extensionUri, "assets")
+    );
     const stylePath = webview.asWebviewUri(
-      Uri.joinPath(context.extensionUri, 'styles/welcome.css')
-    )
+      Uri.joinPath(context.extensionUri, "styles/welcome.css")
+    );
 
     return `<!DOCTYPE html>
     <html lang="en">
@@ -39,18 +39,17 @@ export const Welcome = {
       <header>
         <img src="${assetsPath}/pullflow-logo.png" alt="Pullflow" />
         <div id="desc">
-          <p>Code review collaboration across GitHub, Slack, and VS Code.</p>
+          <p>AI-enhanced Code review collaboration across GitHub, Slack, and VS Code.</p>
         </div>
       </header>
       <section class="container">
         <section class="column">
 
           <div id="intro">
-            <p> Pullflow is an AI-enhanced code review collaboration platform backed by the co-founder of GitHub and used by
+            <p>Pullflow is an AI-enhanced code review collaboration platform backed by the co-founder of GitHub and used by
               some of the most innovative dev teams, including <strong> Epic Games, Avenue, Hear.com,
                 and RedwoodJS. </strong> </p>
-            <p>
-              Sign in to your accounts with Pullflow to enable two-way sync between GitHub and Slack. New to Pullflow? <a
+            <p>Sign in to your accounts with Pullflow to enable bidirectional sync between GitHub, Slack and VS Code. New to Pullflow? <a
                 href="https://pullflow.com">Sign up for free.</a>
             </p>
           </div>
@@ -144,9 +143,9 @@ export const Welcome = {
             <p>This extension is an open-source project created by <a href="https://github.com/pullflow">Pullflow Inc</a>.
               We encourage contributions, bug reports, and new feature suggestions. Feel free to fork the repository and add
               your own features.</p>
-            <p>This is just the beginning of Pullflow's VS Code Slack integration, and we are eager to make improvements
+            <p>This is just the beginning of Pullflow's VS Code extension, and we are eager to make improvements
               based on your feedback. Please don't hesitate to share your thoughts with us through <a
-                href="https://github.com/gradience-io/kana/issues">GitHub issues</a> or on Twitter <a
+                href="https://github.com/pullflow/pullflow/issues">GitHub Issues</a> or on Twitter <a
                 href="https://twitter.com/pullflow">@pullflow</a>.</p>
           </div>
         </section>
@@ -157,6 +156,6 @@ export const Welcome = {
         </div>
       </footer>
 
-    </html>`
+    </html>`;
   },
-}
+};
