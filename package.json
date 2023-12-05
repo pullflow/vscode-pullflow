@@ -33,7 +33,7 @@
     "url": "https://github.com/pullflow/vscode-pullflow/issues"
   },
   "activationEvents": [
-    "*",
+    "onStartupFinished",
     "onUri"
   ],
   "main": "./dist/extension.js",
