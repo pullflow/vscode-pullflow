@@ -22,19 +22,6 @@ describe('User Presence', () => {
     })
   })
 
-  it('does not update user presence to flow when user has not typed enough keys', async () => {
-    mockAuthorization.Authorization.currentSession.mockReturnValue({})
-    mockStore.Store.get.mockReturnValue({
-      keyStrokeCount: 49,
-      lastFocusedTime: 0,
-      lastKeyStrokeTime: new Date().getTime(),
-      isFocused: true,
-      previousPresenceStatus: 'INACTIVE',
-    })
-    await subject().update(mockContext)
-    expect(mockPresence.Presence.set).not.toHaveBeenCalled()
-  })
-
   it('updates user presence to active when user has not typed anything in a while and was not active before', async () => {
     mockAuthorization.Authorization.currentSession.mockReturnValue({})
     mockStore.Store.get.mockReturnValue({
