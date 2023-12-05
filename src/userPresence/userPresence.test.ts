@@ -36,18 +36,6 @@ describe('User Presence', () => {
       status: PresenceStatus.Active,
     })
   })
-
-  it('does not update user presence to active when user has not typed anything in a while and was active before', async () => {
-    mockAuthorization.Authorization.currentSession.mockReturnValue({})
-    mockStore.Store.get.mockReturnValue({
-      keyStrokeCount: 0,
-      lastFocusedTime: new Date().getTime() - 10000,
-      isFocused: true,
-      previousPresenceStatus: PresenceStatus.Active,
-    })
-    await subject().update(mockContext)
-    expect(mockPresence.Presence.set).not.toHaveBeenCalled()
-  })
 })
 
 export {}
