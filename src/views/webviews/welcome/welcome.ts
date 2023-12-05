@@ -39,7 +39,7 @@ export const Welcome = {
       <header>
         <img src="${assetsPath}/pullflow-logo.png" alt="Pullflow" />
         <div id="desc">
-          <span>Code review collaboration across GitHub, Slack, and VS Code.</span>
+          <p>Code review collaboration across GitHub, Slack, and VS Code.</p>
         </div>
       </header>
       <section class="container">
@@ -50,7 +50,7 @@ export const Welcome = {
               some of the most innovative dev teams, including <strong> Epic Games, Avenue, Hear.com,
                 and RedwoodJS. </strong> </p>
             <p>
-              Sign in to your accounts with Pullflow to enable two-sync between GitHub and Slack. New to Pullflow? <a
+              Sign in to your accounts with Pullflow to enable two-way sync between GitHub and Slack. New to Pullflow? <a
                 href="https://pullflow.com">Sign up for free.</a>
             </p>
           </div>
@@ -105,7 +105,7 @@ export const Welcome = {
                 <li>Sign up on <a href="https://app.pullflow.com"> Pullflow</a> and connect your Slack and GitHub accounts.
                 </li>
                 <li> Click on <strong>Sign in to Pullflow</strong> from the VS Code status bar. </li>
-                <li> Thats it! See statuses of your pull requests in status bar. </li>
+                <li> Thats it! Incoming PRs will show on your status bar</li>
                 <ol>
             </div>
           </div>
