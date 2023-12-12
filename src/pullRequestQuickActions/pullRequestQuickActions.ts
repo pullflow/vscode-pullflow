@@ -201,7 +201,7 @@ export const PullRequestQuickActions = {
         }
 
         window.showInformationMessage(
-          `Pullflow: ${item[0].label} added as reviewer to pull request`
+          `Pullflow: ${item[0].label} added as reviewer to pull request #${codeReview.prNumber}.`
         )
         return true
       },
