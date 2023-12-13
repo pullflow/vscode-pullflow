@@ -66,6 +66,7 @@ const createQuickPickItem = ({
     reviewers: codeReview.reviewers,
     type,
     author: codeReview.author,
+    prNumber: codeReview.number,
   }
 }
 

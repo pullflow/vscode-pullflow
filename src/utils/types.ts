@@ -70,6 +70,7 @@ export interface CodeReviewSelectionItem extends QuickPickItem {
   reviewers: { xid: string; hasUser: boolean }[]
   type: CodeReviewType
   author: { xid: string; hasUser: boolean }
+  prNumber: string
 }
 export interface ReviewerSelectionItem extends QuickPickItem {
   hasUser: boolean
