@@ -39,7 +39,7 @@ export const Welcome = {
       <header>
         <img src="${assetsPath}/pullflow-logo.png" alt="Pullflow" />
         <div id="desc">
-          <p>AI-enhanced Code review collaboration across GitHub, Slack, and VS Code.</p>
+          <p>AI-enhanced code review collaboration across GitHub, Slack, and VS Code.</p>
         </div>
       </header>
       <section class="container">
@@ -47,7 +47,7 @@ export const Welcome = {
 
           <div id="intro">
             <p>Pullflow is an AI-enhanced code review collaboration platform backed by the co-founder of GitHub and used by
-              some of the most innovative dev teams, including <strong> Epic Games, Avenue, Hear.com,
+              some of the most innovative dev teams including <strong> Epic Games, Avenue, Hear.com,
                 and RedwoodJS. </strong> </p>
             <p>Sign in to your accounts with Pullflow to enable bidirectional sync between GitHub, Slack and VS Code. New to Pullflow? <a
                 href="https://pullflow.com">Sign up for free.</a>
@@ -62,7 +62,7 @@ export const Welcome = {
               <li>&nbsp;&nbsp;&nbsp;Effortlessly communicate across GitHub, Slack, and VS Code.</li>
               <li>&nbsp;&nbsp;&nbsp;Engage in meaningful conversations with contextual AI during PR discussions.</li>
               <li>&nbsp;&nbsp;&nbsp;Stay fully engaged in your ongoing code reviews.</li>
-              <li>&nbsp;&nbsp;&nbsp;Stay updated in real-time on CI/CD and Automation.</li>
+              <li>&nbsp;&nbsp;&nbsp;Stay updated in real-time on CI/CD and automation.</li>
               <li>&nbsp;&nbsp;&nbsp;Execute actions on your code reviews using natural language.</li>
             </ul>
           </div>
