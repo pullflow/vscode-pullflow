@@ -1,30 +1,30 @@
-import { ExtensionContext, ViewColumn, Webview, window, Uri } from "vscode";
+import { ExtensionContext, ViewColumn, Webview, window, Uri } from 'vscode'
 
 const WelcomeView = {
-  title: "Welcome to Pullflow",
-  type: "welcome-view",
-};
+  title: 'Welcome to Pullflow',
+  type: 'welcome-view',
+}
 
 export const Welcome = {
   show: (context: ExtensionContext) => {
-    const column = window.activeTextEditor?.viewColumn || ViewColumn.One;
+    const column = window.activeTextEditor?.viewColumn || ViewColumn.One
     const panel = window.createWebviewPanel(
       WelcomeView.type,
       WelcomeView.title,
       column
-    );
-    panel.iconPath = Uri.joinPath(context.extensionUri, "assets/pullflow.png");
-    panel.webview.html = Welcome.getHtml(panel.webview, context);
-    panel.reveal(column);
+    )
+    panel.iconPath = Uri.joinPath(context.extensionUri, 'assets/pullflow.png')
+    panel.webview.html = Welcome.getHtml(panel.webview, context)
+    panel.reveal(column)
   },
 
   getHtml: (webview: Webview, context: ExtensionContext) => {
     const assetsPath = webview.asWebviewUri(
-      Uri.joinPath(context.extensionUri, "assets")
-    );
+      Uri.joinPath(context.extensionUri, 'assets')
+    )
     const stylePath = webview.asWebviewUri(
-      Uri.joinPath(context.extensionUri, "styles/welcome.css")
-    );
+      Uri.joinPath(context.extensionUri, 'styles/welcome.css')
+    )
 
     return `<!DOCTYPE html>
     <html lang="en">
@@ -91,6 +91,14 @@ export const Welcome = {
               <img src="${assetsPath}/pr-chat.gif" id="pr-dashboard" alt="PR-Chat-Image" />
             </div>
           </div>
+          <div id="icon-div">
+          <h3>Iconography</h3>
+          <p>The extension offers a convenient way to quickly understand the status of your Pull Requests (PRs) at a
+            glance. It provides an overview of your pull request life cycles using icon-based indicators.</p>
+          <div>
+            <img src="${assetsPath}/vs-code-icon.png" id="vs-code-icon" alt="Main" width="100%" height="100%" />
+          </div>
+        </div>
         </section>
         <section class=column id="second-column">
           <div id="get-started-section">
@@ -130,14 +138,6 @@ export const Welcome = {
               </tbody>
             </table>
           </div>
-          <div id="icon-div">
-            <h3>Iconography</h3>
-            <p>The extension offers a convenient way to quickly understand the status of your Pull Requests (PRs) at a
-              glance. It provides an overview of your pull request life cycles using icon-based indicators.</p>
-            <div>
-              <img src="${assetsPath}/vs-code-icon.png" id="vs-code-icon" alt="Main" width="100%" height="100%" />
-            </div>
-          </div>
           <div>
             <h3>Become a Contributor</h3>
             <p>This extension is an open-source project created by <a href="https://github.com/pullflow">Pullflow Inc</a>.
@@ -156,6 +156,6 @@ export const Welcome = {
         </div>
       </footer>
 
-    </html>`;
+    </html>`
   },
-};
+}
