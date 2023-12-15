@@ -20,6 +20,7 @@ describe('Active Pull Requests Items', () => {
         reviewers: [{ xid: 'gh_2', hasUser: true }],
         type: 0,
         author: { xid: 'gh_1', hasUser: true },
+        prNumber: '1',
       },
       { label: 'Mine', kind: 2 },
       {
@@ -33,6 +34,7 @@ describe('Active Pull Requests Items', () => {
         reviewers: [{ xid: 'gh_2', hasUser: true }],
         type: 1,
         author: { xid: 'gh_1', hasUser: true },
+        prNumber: '1',
       },
     ])
   })
@@ -55,6 +57,7 @@ describe('Active Pull Requests Items', () => {
         reviewers: [{ xid: 'gh_2', hasUser: true }],
         type: 0,
         author: { xid: 'gh_1', hasUser: true },
+        prNumber: '1',
       },
       { label: 'Mine', kind: 2 },
     ])
@@ -109,5 +112,6 @@ const mockCodeReviews = [
     repoChannelConnection: {
       chatChannelId: '1',
     },
+    prNumber: '1',
   },
 ]
