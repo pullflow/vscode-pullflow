@@ -14,12 +14,12 @@ export const PullRequestState = {
   update: async ({
     context,
     statusBar,
-    isLogin = false,
+    showLoading = false,
     errorCount,
   }: {
     context: ExtensionContext
     statusBar: StatusBarItem
-    isLogin?: boolean
+    showLoading?: boolean
     errorCount: { count: number }
   }) => {
     const session = await Authorization.currentSession(context)
@@ -27,7 +27,7 @@ export const PullRequestState = {
       StatusBar.update({ context, statusBar, state: StatusBarState.SignedOut })
       return
     }
-    if (isLogin)
+    if (showLoading)
       StatusBar.update({ context, statusBar, state: StatusBarState.Loading })
 
     log.info(
