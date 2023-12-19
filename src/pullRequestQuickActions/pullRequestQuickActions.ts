@@ -59,6 +59,11 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+
+    updateCodeReviewState({
+      context,
+      statusBar,
+    })
     return true
   },
 
@@ -163,6 +168,11 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+
+    updateCodeReviewState({
+      context,
+      statusBar,
+    })
   },
 
   requestReview: async ({
@@ -211,6 +221,11 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+
+    updateCodeReviewState({
+      context,
+      statusBar,
+    })
   },
 
   refresh: async ({
@@ -242,7 +257,7 @@ export const PullRequestQuickActions = {
     await PullRequestState.update({
       context,
       statusBar,
-      isLogin: true,
+      showLoading: true,
       errorCount: { count: 0 },
     }) // refetch pull requests
 
@@ -287,3 +302,20 @@ export const PullRequestQuickActions = {
 
 const computeTime = (minutes: number) =>
   Math.floor(moment().add(minutes, 'minutes').valueOf() / 1000)
+
+const updateCodeReviewState = ({
+  context,
+  statusBar,
+}: {
+  context: ExtensionContext
+  statusBar: StatusBarItem
+}) => {
+  setTimeout(async () => {
+    await PullRequestState.update({
+      context,
+      statusBar,
+      showLoading: true,
+      errorCount: { count: 0 },
+    })
+  }, 30000)
+}
