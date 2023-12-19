@@ -1,16 +1,9 @@
 import { ExtensionContext, window, StatusBarItem } from 'vscode'
-import {
-  CodeReviewSelectionItem,
-  PresenceStatus,
-  StatusBarState,
-  UserCodeReview,
-} from '../utils'
+import { CodeReviewSelectionItem, PresenceStatus } from '../utils'
 import { Authorization } from '../utils/authorization'
 import { PullRequestQuickActionsApi } from '../api/pullRequestQuickActionsApi'
 import { spaceUserPicker } from '../views/quickpicks/spaceUserPicker'
 import { Presence } from '../models/presence'
-import { Store } from '../utils/store'
-import { StatusBar } from '../views/statusBar/statusBar'
 import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
 import moment = require('moment')
 import { PullRequestState } from '../utils/pullRequestsState'
@@ -60,7 +53,7 @@ export const PullRequestQuickActions = {
       statusBar,
     })
 
-    updateCodeReviewState({
+    PullRequestState.updateWithDelay({
       context,
       statusBar,
     })
@@ -108,19 +101,9 @@ export const PullRequestQuickActions = {
       statusBar,
     })
 
-    // removing from pending PRs
-    const pendingUserCodeReviews = Store.get(
-      context
-    )?.pendingUserCodeReviews?.filter((pr) => pr.id !== codeReview.id) as [
-      UserCodeReview
-    ]
-    await Store.set(context, {
-      pendingUserCodeReviews,
-    })
-    StatusBar.update({
+    PullRequestState.updateWithDelay({
       context,
       statusBar,
-      state: StatusBarState.SignedIn,
     })
 
     return true
@@ -169,7 +152,7 @@ export const PullRequestQuickActions = {
       statusBar,
     })
 
-    updateCodeReviewState({
+    PullRequestState.updateWithDelay({
       context,
       statusBar,
     })
@@ -222,7 +205,7 @@ export const PullRequestQuickActions = {
       statusBar,
     })
 
-    updateCodeReviewState({
+    PullRequestState.updateWithDelay({
       context,
       statusBar,
     })
@@ -302,20 +285,3 @@ export const PullRequestQuickActions = {
 
 const computeTime = (minutes: number) =>
   Math.floor(moment().add(minutes, 'minutes').valueOf() / 1000)
-
-const updateCodeReviewState = ({
-  context,
-  statusBar,
-}: {
-  context: ExtensionContext
-  statusBar: StatusBarItem
-}) => {
-  setTimeout(async () => {
-    await PullRequestState.update({
-      context,
-      statusBar,
-      showLoading: true,
-      errorCount: { count: 0 },
-    })
-  }, 30000)
-}
