@@ -1,4 +1,4 @@
-import { ExtensionContext, StatusBarItem } from 'vscode'
+import { ExtensionContext, StatusBarItem, window } from 'vscode'
 import { Store } from '../utils/store'
 import { ActivePullRequestItems } from '../views/quickpicks/items/activePullRequestItems'
 import { pullRequestActionPicker } from '../views/quickpicks/pullRequestActionPicker'
@@ -11,6 +11,14 @@ export const ActivePullRequests = (
 ) => {
   const codeReviews = Store.get(context)
   if (!codeReviews) return
+
+  if (
+    !codeReviews?.pendingUserCodeReviews?.length &&
+    !codeReviews?.userAuthoredCodeReviews?.length
+  ) {
+    window.showInformationMessage('Pullflow: You have no PRs waiting for you.')
+    return
+  }
 
   const activePullRequestItems = ActivePullRequestItems.get(codeReviews)
 
