@@ -6,7 +6,7 @@ describe('Pull Request Quick Actions', () => {
     jest.resetAllMocks()
     mockAuthorization.Authorization.currentSession.mockReturnValue(mockSession)
   })
-  it('apply labels to pull request', async () => {
+  it('applies labels to pull request', async () => {
     const mockLabel = 'mock_label'
     window.showInputBox.mockReturnValue(mockLabel)
     await subject().applyLabel({
