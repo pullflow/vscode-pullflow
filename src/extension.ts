@@ -11,19 +11,22 @@ import { ActivePullRequests } from './commands/activePullRequests'
 import { Authorization } from './utils/authorization'
 import { ToggleFlowState } from './commands/toggleFlowState'
 import { Welcome } from './views/webviews/welcome/welcome'
-import opentelemetry from '@opentelemetry/api'
-
-const tracer = opentelemetry.trace.getTracer('my-extension-trace')
+import { Analytics } from './instrumentation'
 
 const module = 'extension.ts'
 
 export async function activate(context: ExtensionContext) {
   log.info('activating extension', module)
 
-  const span = tracer.startSpan('my-extension-operation')
+  const trace = new Analytics(context)
+
+  trace.startEvent({
+    name: 'example-event',
+  })
   checkFirstActivation(context)
-  console.log('span: ', span)
-  span.end()
+  trace.sendEvent({
+    name: 'example-event',
+  })
 
   const statusBar: StatusBarItem = await StatusBar.activate(context)
   const { pollIntervalId, focusStateEvent, presenceInterval } =

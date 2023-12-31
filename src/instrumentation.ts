@@ -1,52 +1,98 @@
-// /*instrumentation.ts*/
-// import { NodeSDK } from '@opentelemetry/sdk-node'
-// import { PeriodicExportingMetricReader } from '@opentelemetry/sdk-metrics'
-// import { Resource } from '@opentelemetry/resources'
-// import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+import type {
+  AttributeValue,
+  Span,
+  TimeInput,
+  Tracer,
+} from '@opentelemetry/api'
+import { SpanKind } from '@opentelemetry/api'
+import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
+import { Resource } from '@opentelemetry/resources'
+import {
+  BasicTracerProvider,
+  BatchSpanProcessor,
+} from '@opentelemetry/sdk-trace-base'
+import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
+import { ExtensionContext } from 'vscode'
 
-// import { PrometheusExporter } from '@opentelemetry/exporter-prometheus'
+export class Analytics {
+  tracer: Tracer
+  provider: BasicTracerProvider
 
-// const promExporter = new PrometheusExporter({
-// )
+  constructor(context: ExtensionContext) {
+    this.provider = new BasicTracerProvider({
+      resource: new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]:
+          context.extension.packageJSON.name,
+        [SemanticResourceAttributes.SERVICE_VERSION]:
+          context.extension.packageJSON.version,
+      }),
+    })
+    this.provider = new BasicTracerProvider({
+      resource: new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]:
+          context.extension.packageJSON.name,
+        [SemanticResourceAttributes.SERVICE_VERSION]:
+          context.extension.packageJSON.version,
+      }),
+    })
+    this.provider = new BasicTracerProvider({
+      resource: new Resource({
+        [SemanticResourceAttributes.SERVICE_NAME]:
+          context.extension.packageJSON.name,
+        [SemanticResourceAttributes.SERVICE_VERSION]:
+          context.extension.packageJSON.version,
+      }),
+    })
 
-// promExporter.startServer()
+    const exporter = new OTLPTraceExporter({
+      url: '',
+      compression: 'gzip' as any,
+    })
+    this.provider.addSpanProcessor(new BatchSpanProcessor(exporter))
+    this.tracer = this.provider.getTracer(context.extension.packageJSON.name)
+  }
 
-// const sdk = new NodeSDK({
-//   resource: new Resource({
-//     [SemanticResourceAttributes.SERVICE_NAME]: 'yourServiceName',
-//     [SemanticResourceAttributes.SERVICE_VERSION]: '1.0',
-//   }),
-//   traceExporter: promExporter,
-//   metricReader: new PeriodicExportingMetricReader({
-//     exporter: promExporter,
-//   }),
-// })
+  dispose(): void {
+    void this.provider.shutdown()
+  }
 
-// sdk.start()
+  startEvent({
+    name,
+    data,
+    startTime,
+  }: {
+    name: string
+    data?: Record<string, AttributeValue>
+    startTime?: TimeInput
+  }): Span {
+    const span = this.tracer.startSpan(name, {
+      kind: SpanKind.INTERNAL,
+      startTime: startTime ?? Date.now(),
+    })
+    if (data) {
+      span.setAttributes(data)
+    }
+    return span
+  }
 
-// // gracefully shut down the SDK on process exit
-// process.on('SIGTERM', () => {
-//   sdk
-//     .shutdown()
-//     .then(() => console.log('Tracing terminated'))
-//     .catch((error) => console.log('Error terminating tracing', error))
-//     .finally(() => process.exit(0))
-// })
-
-import { PrometheusExporter } from '@opentelemetry/exporter-prometheus'
-import { MeterProvider } from '@opentelemetry/sdk-metrics'
-import { NodeTracerProvider } from '@opentelemetry/sdk-trace-node'
-
-const options = { port: 9464 }
-const exporter = new PrometheusExporter(options)
-
-// Creates MeterProvider and installs the exporter as a MetricReader
-const meterProvider = new MeterProvider()
-meterProvider.addMetricReader(exporter)
-const meter = meterProvider.getMeter('example-prometheus')
-
-// Now, start recording data
-const counter = meter.createCounter('metric_name', {
-  description: 'Example of a counter',
-})
-counter.add(10, { pid: process.pid })
+  sendEvent({
+    name,
+    data,
+    startTime,
+    endTime,
+  }: {
+    name: string
+    data?: Record<string, AttributeValue>
+    startTime?: TimeInput
+    endTime?: TimeInput
+  }): void {
+    const span = this.tracer.startSpan(name, {
+      kind: SpanKind.INTERNAL,
+      startTime: startTime ?? Date.now(),
+    })
+    if (data) {
+      span.setAttributes(data)
+    }
+    span.end(endTime)
+  }
+}
