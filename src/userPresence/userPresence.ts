@@ -33,6 +33,7 @@ export const UserPresence = {
         })
         await Store.set(context, {
           previousPresenceStatus: PresenceStatus.Flow,
+          keyStrokeCount: 0,
         })
         return
       }
@@ -41,7 +42,7 @@ export const UserPresence = {
     const timeSinceLastKeyStroke =
       new Date().getTime() - (lastKeyStrokeTime || 0)
 
-    // if user has not typed anything in a while and was not active before
+    // if user has not typed anything in a while
     if (timeSinceLastKeyStroke > KEY_STROKE_INTERVAL) {
       await Store.set(context, { keyStrokeCount: 0 })
       if (isFocused && lastFocusedTime) {
@@ -60,5 +61,18 @@ export const UserPresence = {
         }
       }
     }
+    await Presence.set({
+      status: PresenceStatus.Inactive,
+      context,
+      statusBar,
+    })
+  },
+
+  resetState: async (context: ExtensionContext) => {
+    await Store.set(context, {
+      lastFocusedTime: 0,
+      keyStrokeCount: 0,
+      lastKeyStrokeTime: 0,
+    })
   },
 }
