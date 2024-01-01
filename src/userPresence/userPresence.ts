@@ -26,14 +26,14 @@ export const UserPresence = {
     if (currentKeyStrokeCount) {
       // if the user has typed enough keys and was not in flow before
       if (currentKeyStrokeCount >= KEY_STROKE_COUNT) {
+        await Store.set(context, {
+          previousPresenceStatus: PresenceStatus.Flow,
+          keyStrokeCount: 0,
+        })
         await Presence.set({
           status: PresenceStatus.Flow,
           context,
           statusBar,
-        })
-        await Store.set(context, {
-          previousPresenceStatus: PresenceStatus.Flow,
-          keyStrokeCount: 0,
         })
         return
       }
@@ -49,18 +49,21 @@ export const UserPresence = {
         const timeSinceLastFocus = new Date().getTime() - lastFocusedTime
         // if user has been in focused mode for a while
         if (timeSinceLastFocus > FOCUS_INTERVAL) {
+          await Store.set(context, {
+            previousPresenceStatus: PresenceStatus.Active,
+          })
           await Presence.set({
             status: PresenceStatus.Active,
             context,
             statusBar,
           })
-          await Store.set(context, {
-            previousPresenceStatus: PresenceStatus.Active,
-          })
           return
         }
       }
     }
+    await Store.set(context, {
+      previousPresenceStatus: PresenceStatus.Inactive,
+    })
     await Presence.set({
       status: PresenceStatus.Inactive,
       context,
