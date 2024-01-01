@@ -19,7 +19,7 @@ export async function activate(context: ExtensionContext) {
   log.info('activating extension', module)
 
   checkFirstActivation(context)
-  UserPresence.resetState(context)
+  await UserPresence.resetState(context)
 
   const statusBar: StatusBarItem = await StatusBar.activate(context)
   const { pollIntervalId, focusStateEvent, presenceInterval } =
