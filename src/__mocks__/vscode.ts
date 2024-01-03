@@ -8,4 +8,5 @@ export enum QuickPickItemKind {
 
 export const window = {
   showInformationMessage: jest.fn(),
+  showInputBox: jest.fn(),
 }

@@ -31,7 +31,7 @@ export const initialize = async ({
   await PullRequestState.update({
     context,
     statusBar,
-    isLogin: true,
+    showLoading: true,
     errorCount,
   })
   await setSpaceUsers({ context, statusBar })

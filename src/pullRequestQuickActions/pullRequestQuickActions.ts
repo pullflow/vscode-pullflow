@@ -1,16 +1,9 @@
 import { ExtensionContext, window, StatusBarItem } from 'vscode'
-import {
-  CodeReviewSelectionItem,
-  PresenceStatus,
-  StatusBarState,
-  UserCodeReview,
-} from '../utils'
+import { CodeReviewSelectionItem, PresenceStatus } from '../utils'
 import { Authorization } from '../utils/authorization'
 import { PullRequestQuickActionsApi } from '../api/pullRequestQuickActionsApi'
 import { spaceUserPicker } from '../views/quickpicks/spaceUserPicker'
 import { Presence } from '../models/presence'
-import { Store } from '../utils/store'
-import { StatusBar } from '../views/statusBar/statusBar'
 import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
 import moment = require('moment')
 import { PullRequestState } from '../utils/pullRequestsState'
@@ -59,6 +52,11 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+
+    PullRequestState.updateWithDelay({
+      context,
+      statusBar,
+    })
     return true
   },
 
@@ -103,19 +101,9 @@ export const PullRequestQuickActions = {
       statusBar,
     })
 
-    // removing from pending PRs
-    const pendingUserCodeReviews = Store.get(
-      context
-    )?.pendingUserCodeReviews?.filter((pr) => pr.id !== codeReview.id) as [
-      UserCodeReview
-    ]
-    await Store.set(context, {
-      pendingUserCodeReviews,
-    })
-    StatusBar.update({
+    PullRequestState.updateWithDelay({
       context,
       statusBar,
-      state: StatusBarState.SignedIn,
     })
 
     return true
@@ -160,6 +148,11 @@ export const PullRequestQuickActions = {
     })
     await Presence.set({
       status: PresenceStatus.Active,
+      context,
+      statusBar,
+    })
+
+    PullRequestState.updateWithDelay({
       context,
       statusBar,
     })
@@ -211,6 +204,11 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+
+    PullRequestState.updateWithDelay({
+      context,
+      statusBar,
+    })
   },
 
   refresh: async ({
@@ -242,7 +240,7 @@ export const PullRequestQuickActions = {
     await PullRequestState.update({
       context,
       statusBar,
-      isLogin: true,
+      showLoading: true,
       errorCount: { count: 0 },
     }) // refetch pull requests
 

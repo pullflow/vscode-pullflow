@@ -9,17 +9,18 @@ import { log } from './logger'
 
 const MAX_ERROR_COUNT = 3
 const module = 'pullRequestState.ts'
+const DELAY_TIME = 30000 // 3 seconds
 
 export const PullRequestState = {
   update: async ({
     context,
     statusBar,
-    isLogin = false,
+    showLoading = false,
     errorCount,
   }: {
     context: ExtensionContext
     statusBar: StatusBarItem
-    isLogin?: boolean
+    showLoading?: boolean
     errorCount: { count: number }
   }) => {
     const session = await Authorization.currentSession(context)
@@ -27,7 +28,7 @@ export const PullRequestState = {
       StatusBar.update({ context, statusBar, state: StatusBarState.SignedOut })
       return
     }
-    if (isLogin)
+    if (showLoading)
       StatusBar.update({ context, statusBar, state: StatusBarState.Loading })
 
     log.info(
@@ -66,5 +67,22 @@ export const PullRequestState = {
         : { lastFocusedTime: null }),
     })
     StatusBar.update({ context, statusBar, state: StatusBarState.SignedIn })
+  },
+
+  updateWithDelay: ({
+    context,
+    statusBar,
+  }: {
+    context: ExtensionContext
+    statusBar: StatusBarItem
+  }) => {
+    setTimeout(async () => {
+      await PullRequestState.update({
+        context,
+        statusBar,
+        showLoading: true,
+        errorCount: { count: 0 },
+      })
+    }, DELAY_TIME)
   },
 }
