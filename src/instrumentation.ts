@@ -27,25 +27,9 @@ export class Analytics {
           context.extension.packageJSON.version,
       }),
     })
-    this.provider = new BasicTracerProvider({
-      resource: new Resource({
-        [SemanticResourceAttributes.SERVICE_NAME]:
-          context.extension.packageJSON.name,
-        [SemanticResourceAttributes.SERVICE_VERSION]:
-          context.extension.packageJSON.version,
-      }),
-    })
-    this.provider = new BasicTracerProvider({
-      resource: new Resource({
-        [SemanticResourceAttributes.SERVICE_NAME]:
-          context.extension.packageJSON.name,
-        [SemanticResourceAttributes.SERVICE_VERSION]:
-          context.extension.packageJSON.version,
-      }),
-    })
 
     const exporter = new OTLPTraceExporter({
-      url: '',
+      url: 'http://localhost:4318/v1/traces',
       compression: 'gzip' as any,
     })
     this.provider.addSpanProcessor(new BatchSpanProcessor(exporter))
