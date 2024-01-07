@@ -28,6 +28,7 @@ export const spaceUserPicker = ({
     }
   })
   QuickPick.create({
+    context,
     title,
     items: spaceUsersItems,
     placeholder,
