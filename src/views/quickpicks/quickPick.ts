@@ -15,28 +15,39 @@ export const QuickPick = {
     placeholder: string
     onDidChangeSelection: (selection: readonly Type[]) => void
   }) => {
-    const trace = new Telemetry(context)
     const quickPick = window.createQuickPick<Type>()
+
+    const trace = new Telemetry(context)
     const span = trace.start({
       name: title,
-      attributes: {
-        items: items.toString(),
-        title,
-      },
     })
 
     quickPick.items = items
     quickPick.title = title
     quickPick.placeholder = placeholder
     quickPick.onDidChangeSelection(onDidChangeSelection)
+
     quickPick.onDidHide(() => {
-      trace.end(span)
+      trace.end({
+        span,
+        attributes: {
+          title,
+        },
+      })
       quickPick.dispose()
     })
+
     quickPick.onDidAccept(() => {
-      trace.end(span)
+      trace.end({
+        span,
+        attributes: {
+          title,
+          selectedItem: quickPick.selectedItems[0]?.label,
+        },
+      })
       quickPick.dispose()
     })
+
     quickPick.show()
   },
 }

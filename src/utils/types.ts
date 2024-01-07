@@ -172,6 +172,6 @@ export type RefreshCodeReviewVariables = {
 export type TraceAttributes = QuickPickTrace
 
 export type QuickPickTrace = {
-  items: string
   title: string
+  selectedItem?: string
 }
