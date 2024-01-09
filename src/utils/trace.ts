@@ -16,6 +16,7 @@ export class Trace {
   tracer: Tracer
   provider: BasicTracerProvider
   defaultAttributes: Attributes
+  isEnabled: boolean | undefined
 
   constructor(context: ExtensionContext) {
     this.provider = new BasicTracerProvider({
@@ -31,7 +32,8 @@ export class Trace {
     })
     this.provider.addSpanProcessor(new BatchSpanProcessor(exporter))
     this.tracer = this.provider.getTracer(extensionInfo.name)
-    const { user } = Store.get(context)
+    const { user, isTelemetryEnabled } = Store.get(context)
+    this.isEnabled = isTelemetryEnabled && true
     this.defaultAttributes = user || {}
   }
 
@@ -39,13 +41,8 @@ export class Trace {
     void this.provider.shutdown()
   }
 
-  start({
-    name,
-    attributes,
-  }: {
-    name: string
-    attributes?: TraceAttributes
-  }): Span {
+  start({ name, attributes }: { name: string; attributes?: TraceAttributes }) {
+    if (!this.isEnabled) return
     const span = this.tracer.startSpan(name, {
       kind: SpanKind.INTERNAL,
       startTime: Date.now(),
@@ -62,9 +59,10 @@ export class Trace {
     span,
     attributes,
   }: {
-    span: Span
+    span?: Span
     attributes?: TraceAttributes
   }): void {
+    if (!this.isEnabled || !span) return
     if (attributes)
       span.setAttributes({
         ...attributes,
