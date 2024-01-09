@@ -1,5 +1,5 @@
 import { ExtensionContext, QuickPickItem, window } from 'vscode'
-import { Telemetry } from '../../utils/telemetry'
+import { Trace } from '../../utils/trace'
 
 export const QuickPick = {
   create: <Type extends QuickPickItem>({
@@ -17,7 +17,7 @@ export const QuickPick = {
   }) => {
     const quickPick = window.createQuickPick<Type>()
 
-    const trace = new Telemetry(context)
+    const trace = new Trace(context)
     const span = trace.start({
       name: title,
     })
