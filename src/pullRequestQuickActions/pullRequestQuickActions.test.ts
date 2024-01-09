@@ -83,6 +83,7 @@ const subject = () => {
   jest.mock('../models/presence', () => mockPresence)
   jest.mock('../utils/pullRequestsState', () => mockPullRequestState)
   jest.mock('../views/quickpicks/spaceUserPicker', () => mockSpaceUserPicker)
+  jest.mock('../views/quickpicks/timePicker', () => mockTimerPicker)
   return require('./pullRequestQuickActions').PullRequestQuickActions
 }
 
@@ -119,4 +120,7 @@ const mockModel = {
 }
 const mockSession = {
   accessToken: 'mock_access_token',
+}
+const mockTimerPicker = {
+  timePicker: jest.fn(),
 }
