@@ -12,7 +12,7 @@ import { Store } from './store'
 
 const extensionInfo = extensions.getExtension('Pullflow.pullflow')?.packageJSON
 
-export class Telemetry {
+export class Trace {
   tracer: Tracer
   provider: BasicTracerProvider
   defaultAttributes: Attributes
