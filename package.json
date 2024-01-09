@@ -62,6 +62,10 @@
       {
         "command": "pullflow.welcome-view",
         "title": "Pullflow: Welcome"
+      },
+      {
+        "command": "pullflow.turn-off-telemetry",
+        "title": "Pullflow: Turn Off Telemetry"
       }
     ],
     "keybindings": [
@@ -168,6 +172,17 @@
         "default": {
           "fontPath": "./assets/Pullflow.woff",
           "fontCharacter": "\\e90c"
+        }
+      }
+    },
+    "configuration": {
+      "id": "pullflow",
+      "title": "Pullflow",
+      "properties": {
+        "pullflow.telemetry.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Alow Pullflow to send product usage telemetry.\n\n_**Note:** For Pullflow to send any telemetry BOTH this setting and VS Code telemetry must be enabled. If either one is disabled no telemetry will be sent._"
         }
       }
     }
