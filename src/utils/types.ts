@@ -169,9 +169,11 @@ export type RepoInfo = {
 export type RefreshCodeReviewVariables = {
   codeReviewId: string
 }
-export type TraceAttributes = QuickPickTrace
-
+export type TraceAttributes = QuickPickTrace | PresenceTrace
 export type QuickPickTrace = {
   title: string
   selectedItem?: string
+}
+export type PresenceTrace = {
+  status: string
 }
