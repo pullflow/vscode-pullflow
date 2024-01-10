@@ -80,6 +80,9 @@ const presenceTelemetry = ({
 }) => {
   const trace = new Trace(context)
   const { previousPresenceStatus } = Store.get(context)
+
+  if (!previousPresenceStatus) return
+
   const span = trace.start({
     name: `presence-event-${presenceStatus}`,
     attributes: {
