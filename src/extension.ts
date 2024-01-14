@@ -11,6 +11,7 @@ import { ActivePullRequests } from './commands/activePullRequests'
 import { Authorization } from './utils/authorization'
 import { ToggleFlowState } from './commands/toggleFlowState'
 import { Welcome } from './views/webviews/welcome/welcome'
+import { UserPresence } from './userPresence/userPresence'
 
 const module = 'extension.ts'
 
@@ -18,6 +19,7 @@ export async function activate(context: ExtensionContext) {
   log.info('activating extension', module)
 
   checkFirstActivation(context)
+  await UserPresence.resetState(context)
 
   const statusBar: StatusBarItem = await StatusBar.activate(context)
   const { pollIntervalId, focusStateEvent, presenceInterval } =
