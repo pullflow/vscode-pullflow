@@ -279,7 +279,7 @@ export const PullRequestQuickActions = {
       return true
     }
 
-    timePicker({ title: 'Remind me in', onDidChangeSelection })
+    timePicker({ title: 'Remind me in', onDidChangeSelection, context })
   },
 }
 

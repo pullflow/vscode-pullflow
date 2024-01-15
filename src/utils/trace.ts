@@ -45,20 +45,32 @@ export class Trace {
     attributes,
   }: {
     name: string
-    attributes: TraceAttributes
+    attributes?: TraceAttributes
   }): Span {
     const span = this.tracer.startSpan(name, {
       kind: SpanKind.INTERNAL,
       startTime: Date.now(),
     })
-    span.setAttributes({
-      ...attributes,
-      ...this.defaultAttributes,
-    })
+    if (attributes)
+      span.setAttributes({
+        ...attributes,
+        ...this.defaultAttributes,
+      })
     return span
   }
 
-  end(span: Span): void {
+  end({
+    span,
+    attributes,
+  }: {
+    span: Span
+    attributes?: TraceAttributes
+  }): void {
+    if (attributes)
+      span.setAttributes({
+        ...attributes,
+        ...this.defaultAttributes,
+      })
     span.end(Date.now())
   }
 }

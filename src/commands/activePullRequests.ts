@@ -23,6 +23,7 @@ export const ActivePullRequests = (
   const activePullRequestItems = ActivePullRequestItems.get(codeReviews)
 
   QuickPick.create({
+    context,
     items: activePullRequestItems,
     title: 'My Active Pull Requests',
     placeholder: 'select pull request',
