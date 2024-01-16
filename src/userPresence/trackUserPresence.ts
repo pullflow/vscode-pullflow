@@ -18,7 +18,10 @@ export const trackUserPresence = (
     incrementKeyStrokeCount(context)
   })
 
-  return { userFlowIntervalId, textEditorEvent }
+  return {
+    clearFlowInterval: () => clearInterval(userFlowIntervalId),
+    disposeTextEditorEvent: () => textEditorEvent.dispose(),
+  }
 }
 
 const incrementKeyStrokeCount = (context: ExtensionContext) => {
