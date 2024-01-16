@@ -99,5 +99,6 @@ class Trace {
         ...this.defaultAttributes,
       })
     this.span.end(Date.now())
+    this.span = undefined
   }
 }
