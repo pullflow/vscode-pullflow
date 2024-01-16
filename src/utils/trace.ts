@@ -9,6 +9,7 @@ import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions'
 import { ExtensionContext, extensions } from 'vscode'
 import { TraceAttributes } from './types'
 import { Store } from './store'
+import { AppConfig } from './appConfig'
 
 const extensionInfo = extensions.getExtension('Pullflow.pullflow')?.packageJSON
 
@@ -27,7 +28,7 @@ export class Trace {
     })
 
     const exporter = new OTLPTraceExporter({
-      url: 'http://localhost:4318/v1/traces',
+      url: AppConfig.pullflow.telemetryUrl + '/v1/traces',
       compression: 'gzip' as any,
     })
     this.provider.addSpanProcessor(new BatchSpanProcessor(exporter))
