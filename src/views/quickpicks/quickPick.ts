@@ -1,5 +1,5 @@
 import { ExtensionContext, QuickPickItem, window } from 'vscode'
-import { Trace } from '../../utils/trace'
+import { instantiatePullflowTracer } from '../../utils/trace'
 
 export const QuickPick = {
   create: <Type extends QuickPickItem>({
@@ -17,8 +17,8 @@ export const QuickPick = {
   }) => {
     const quickPick = window.createQuickPick<Type>()
 
-    const trace = new Trace(context)
-    const span = trace.start({
+    const trace = instantiatePullflowTracer(context)
+    trace.start({
       name: title,
     })
 
@@ -29,7 +29,6 @@ export const QuickPick = {
 
     quickPick.onDidHide(() => {
       trace.end({
-        span,
         attributes: {
           title,
         },
@@ -39,7 +38,6 @@ export const QuickPick = {
 
     quickPick.onDidAccept(() => {
       trace.end({
-        span,
         attributes: {
           title,
           selectedItem: quickPick.selectedItems[0]?.label,

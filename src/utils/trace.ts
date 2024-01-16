@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Span, Tracer, SpanKind, Attributes } from '@opentelemetry/api'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 import { Resource } from '@opentelemetry/resources'
@@ -10,14 +11,47 @@ import { ExtensionContext, extensions } from 'vscode'
 import { TraceAttributes } from './types'
 import { Store } from './store'
 import { AppConfig } from './appConfig'
+import { log } from './logger'
 
 const extensionInfo = extensions.getExtension('Pullflow.pullflow')?.packageJSON
 
-export class Trace {
+type FakeTracer = {}
+type FakeBasicTracerProvider = {}
+type FakeAttribute = {}
+
+// Null Object Design pattern
+export function instantiatePullflowTracer(context: ExtensionContext) {
+  const { isTelemetryEnabled } = Store.get(context)
+  if (isTelemetryEnabled) {
+    return new Trace(context)
+  } else {
+    return new FakeTrace(context)
+  }
+}
+class FakeTrace {
+  tracer: FakeTracer
+  provider: FakeBasicTracerProvider
+  defaultAttributes: FakeAttribute
+
+  constructor(_context: ExtensionContext) {
+    this.provider = {}
+    this.tracer = {}
+    this.defaultAttributes = {}
+  }
+
+  dispose(): void {}
+  start({ name, attributes }: { name: string; attributes?: TraceAttributes }) {
+    console.log({ name, attributes })
+  }
+  end({ attributes }: { attributes?: TraceAttributes }) {
+    console.log({ attributes })
+  }
+}
+class Trace {
   tracer: Tracer
   provider: BasicTracerProvider
   defaultAttributes: Attributes
-  isEnabled: boolean | undefined
+  span: Span | undefined
 
   constructor(context: ExtensionContext) {
     this.provider = new BasicTracerProvider({
@@ -33,9 +67,9 @@ export class Trace {
     })
     this.provider.addSpanProcessor(new BatchSpanProcessor(exporter))
     this.tracer = this.provider.getTracer(extensionInfo.name)
-    const { user, isTelemetryEnabled } = Store.get(context)
-    this.isEnabled = isTelemetryEnabled && true
+    const { user } = Store.get(context)
     this.defaultAttributes = user || {}
+    this.span = undefined
   }
 
   dispose(): void {
@@ -43,32 +77,27 @@ export class Trace {
   }
 
   start({ name, attributes }: { name: string; attributes?: TraceAttributes }) {
-    if (!this.isEnabled) return
-    const span = this.tracer.startSpan(name, {
+    this.span = this.tracer.startSpan(name, {
       kind: SpanKind.INTERNAL,
       startTime: Date.now(),
     })
     if (attributes)
-      span.setAttributes({
+      this.span.setAttributes({
         ...attributes,
         ...this.defaultAttributes,
       })
-    return span
   }
 
-  end({
-    span,
-    attributes,
-  }: {
-    span?: Span
-    attributes?: TraceAttributes
-  }): void {
-    if (!this.isEnabled || !span) return
+  end({ attributes }: { attributes?: TraceAttributes }): void {
+    if (this.span === undefined) {
+      log.warn('span is undefined', 'trace.ts')
+      return
+    }
     if (attributes)
-      span.setAttributes({
+      this.span.setAttributes({
         ...attributes,
         ...this.defaultAttributes,
       })
-    span.end(Date.now())
+    this.span.end(Date.now())
   }
 }
