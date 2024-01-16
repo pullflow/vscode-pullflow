@@ -4,6 +4,7 @@ import {
   WindowState,
   commands,
   window,
+  workspace,
 } from 'vscode'
 import { Store } from './store'
 import { log } from './logger'
@@ -27,6 +28,9 @@ export const initialize = async ({
   statusBar: StatusBarItem
 }) => {
   log.info('initializing extension', module)
+
+  await initializeTelemetry(context)
+
   const errorCount = { count: 0 }
   await PullRequestState.update({
     context,
@@ -115,4 +119,30 @@ const setSpaceUsers = async ({
     isFocused: window.state.focused,
     spaceUsers: spaceUsers.spaceUsers,
   })
+}
+
+const extensionTelemetryFlag = () =>
+  workspace
+    .getConfiguration('pullflow.telemetry.enabled')
+    .get<boolean>('pullflow.telemetry.enabled', true)
+
+const vscodeTelemetryFlag = () =>
+  workspace.getConfiguration('telemetry').get<boolean>('enableTelemetry')
+
+const initializeTelemetry = async (context: ExtensionContext) => {
+  await Store.set(context, {
+    isTelemetryEnabled: vscodeTelemetryFlag() && extensionTelemetryFlag(),
+  })
+
+  const disposable = workspace.onDidChangeConfiguration(async (event) => {
+    if (
+      event.affectsConfiguration('telemetry.enableTelemetry') ||
+      event.affectsConfiguration('pullflow.telemetry.enabled')
+    ) {
+      await Store.set(context, {
+        isTelemetryEnabled: vscodeTelemetryFlag() && extensionTelemetryFlag(),
+      })
+    }
+  })
+  context.subscriptions.push(disposable)
 }

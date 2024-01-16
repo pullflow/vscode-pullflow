@@ -13,5 +13,6 @@ export const AppConfig = {
   pullflow: {
     baseUrl: process.env['PULLFLOW_APP_URL'] as string,
     graphqlUrl: `${process.env['PULLFLOW_APP_URL']}/api/graphql`,
+    telemetryUrl: process.env['PULLFLOW_TELEMETRY_URL'] as string,
   },
 }
