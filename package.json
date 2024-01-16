@@ -178,7 +178,7 @@
         "pullflow.telemetry.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Alow Pullflow to send product usage telemetry.\n\n_**Note:** For Pullflow to send any telemetry BOTH this setting and VS Code telemetry must be enabled. If either one is disabled no telemetry will be sent._"
+          "markdownDescription": "Allow Pullflow to send product usage telemetry.\n\n_**Note:** For Pullflow to send any telemetry BOTH this setting and VS Code telemetry must be enabled. If either one is disabled no telemetry will be sent._"
         }
       }
     }
