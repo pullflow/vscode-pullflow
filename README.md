@@ -74,6 +74,16 @@ The Pullflow VS Code Extension requires:
 
 We utilize industry-standard encryption protocols to guarantee the confidentiality and security of your data when communicating between the extension and external platforms. You can have confidence that your discussions and interactions are safeguarded.
 
+## Flow State Detection and User Privacy
+Our VSCode extension includes a feature to detect your flow state through keystroke monitoring. We prioritize your privacy and assure you that this data is exclusively used to determine your flow state. It remains completely confidential and is not used for any other purposes.
+
+Prefer to opt out? No problem. Simply follow these steps:
+
+1. Press Ctrl + Shift + P (or Command + Shift + P on Mac).
+2. Go to Workspace Settings.
+3. Scroll down to 'Pullflow Flow'.
+4. Choose 'Disable' to opt out.
+
 ## Contributing
 
 This extension is an open-source project created by [Pullflow Inc](https://github.com/pullflow/vscode-pullflow). We encourage contributions, bug reports, and new feature suggestions. Feel free to fork the repository and add your own features.
