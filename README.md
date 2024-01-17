@@ -80,9 +80,10 @@ Our VSCode extension includes a feature to detect your flow state through keystr
 Prefer to opt out? No problem. Simply follow these steps:
 
 1. Press Ctrl + Shift + P (or Command + Shift + P on Mac).
-2. Go to Workspace Settings.
-3. Scroll down to 'Pullflow Flow'.
-4. Choose 'Disable' to opt out.
+2. Go to `Preferences: Open Workspace Settings`
+3. Search for `Pullflow Flow`
+4. Uncheck `Pullflow > Automatic flow detection`
+5. Reload extension
 
 ## Contributing
 
