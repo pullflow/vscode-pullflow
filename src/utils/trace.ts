@@ -19,7 +19,6 @@ type FakeTracer = {}
 type FakeBasicTracerProvider = {}
 type FakeAttribute = {}
 
-// Null Object Design pattern
 export function instantiatePullflowTracer(context: ExtensionContext) {
   const { isTelemetryEnabled } = Store.get(context)
   if (isTelemetryEnabled) {
