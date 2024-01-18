@@ -29,7 +29,7 @@ export const initialize = async ({
 }) => {
   log.info('initializing extension', module)
 
-  await initializeTelemetry(context)
+  await initializeConfiguration(context)
 
   const errorCount = { count: 0 }
   await PullRequestState.update({
@@ -122,16 +122,17 @@ const setSpaceUsers = async ({
 }
 
 const extensionTelemetryFlag = () =>
-  workspace
-    .getConfiguration('pullflow.telemetry.enabled')
-    .get<boolean>('pullflow.telemetry.enabled', true)
+  getPullflowConfig('telemetry.enabled', true)
 
 const vscodeTelemetryFlag = () =>
   workspace.getConfiguration('telemetry').get<boolean>('enableTelemetry')
 
-const initializeTelemetry = async (context: ExtensionContext) => {
+const initializeConfiguration = async (context: ExtensionContext) => {
   await Store.set(context, {
     isTelemetryEnabled: vscodeTelemetryFlag() && extensionTelemetryFlag(),
+    isFlowDetectionEnabled: !!getPullflowConfig(
+      'automaticFlowDetection.enabled'
+    ),
   })
 
   const disposable = workspace.onDidChangeConfiguration(async (event) => {
@@ -143,6 +144,20 @@ const initializeTelemetry = async (context: ExtensionContext) => {
         isTelemetryEnabled: vscodeTelemetryFlag() && extensionTelemetryFlag(),
       })
     }
+
+    if (event.affectsConfiguration('pullflow.automaticFlowDetection.enabled')) {
+      await Store.set(context, {
+        isFlowDetectionEnabled: !!getPullflowConfig(
+          'automaticFlowDetection.enabled'
+        ),
+      })
+    }
   })
   context.subscriptions.push(disposable)
+}
+
+const getPullflowConfig = (key: string, defaultValue?: boolean) => {
+  const config = workspace.getConfiguration('pullflow')
+  const value = config.get<boolean>(key)
+  return value ?? defaultValue
 }
