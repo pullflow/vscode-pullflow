@@ -39,12 +39,8 @@ class FakeTrace {
   }
 
   dispose(): void {}
-  start({ name, attributes }: { name: string; attributes?: TraceAttributes }) {
-    console.log({ name, attributes })
-  }
-  end({ attributes }: { attributes?: TraceAttributes }) {
-    console.log({ attributes })
-  }
+  start({}: { name: string; attributes?: TraceAttributes }) {}
+  end({}: { attributes?: TraceAttributes }) {}
 }
 class Trace {
   tracer: Tracer
