@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Span, Tracer, SpanKind, Attributes } from '@opentelemetry/api'
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-http'
 import { Resource } from '@opentelemetry/resources'
@@ -10,13 +11,42 @@ import { ExtensionContext, extensions } from 'vscode'
 import { TraceAttributes } from './types'
 import { Store } from './store'
 import { AppConfig } from './appConfig'
+import { log } from './logger'
 
 const extensionInfo = extensions.getExtension('Pullflow.pullflow')?.packageJSON
 
-export class Trace {
+type FakeTracer = {}
+type FakeBasicTracerProvider = {}
+type FakeAttribute = {}
+
+export function instantiatePullflowTracer(context: ExtensionContext) {
+  const { isTelemetryEnabled } = Store.get(context)
+  if (isTelemetryEnabled) {
+    return new Trace(context)
+  } else {
+    return new FakeTrace(context)
+  }
+}
+class FakeTrace {
+  tracer: FakeTracer
+  provider: FakeBasicTracerProvider
+  defaultAttributes: FakeAttribute
+
+  constructor(_context: ExtensionContext) {
+    this.provider = {}
+    this.tracer = {}
+    this.defaultAttributes = {}
+  }
+
+  dispose(): void {}
+  start({}: { name: string; attributes?: TraceAttributes }) {}
+  end({}: { attributes?: TraceAttributes }) {}
+}
+class Trace {
   tracer: Tracer
   provider: BasicTracerProvider
   defaultAttributes: Attributes
+  span: Span | undefined
 
   constructor(context: ExtensionContext) {
     this.provider = new BasicTracerProvider({
@@ -34,43 +64,36 @@ export class Trace {
     this.tracer = this.provider.getTracer(extensionInfo.name)
     const { user } = Store.get(context)
     this.defaultAttributes = user || {}
+    this.span = undefined
   }
 
   dispose(): void {
     void this.provider.shutdown()
   }
 
-  start({
-    name,
-    attributes,
-  }: {
-    name: string
-    attributes?: TraceAttributes
-  }): Span {
-    const span = this.tracer.startSpan(name, {
+  start({ name, attributes }: { name: string; attributes?: TraceAttributes }) {
+    this.span = this.tracer.startSpan(name, {
       kind: SpanKind.INTERNAL,
       startTime: Date.now(),
     })
     if (attributes)
-      span.setAttributes({
+      this.span.setAttributes({
         ...attributes,
         ...this.defaultAttributes,
       })
-    return span
   }
 
-  end({
-    span,
-    attributes,
-  }: {
-    span: Span
-    attributes?: TraceAttributes
-  }): void {
+  end({ attributes }: { attributes?: TraceAttributes }): void {
+    if (this.span === undefined) {
+      log.warn('span is undefined', 'trace.ts')
+      return
+    }
     if (attributes)
-      span.setAttributes({
+      this.span.setAttributes({
         ...attributes,
         ...this.defaultAttributes,
       })
-    span.end(Date.now())
+    this.span.end(Date.now())
+    this.span = undefined
   }
 }

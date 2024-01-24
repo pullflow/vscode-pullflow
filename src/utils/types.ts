@@ -48,6 +48,8 @@ export type CacheObject = {
   keyStrokeCount?: number
   lastKeyStrokeTime?: number | null
   previousPresenceStatus?: PresenceStatus
+  isTelemetryEnabled?: boolean
+  isFlowDetectionEnabled?: boolean
 }
 export enum StatusBarState {
   Loading,
