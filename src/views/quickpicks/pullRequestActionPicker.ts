@@ -54,6 +54,7 @@ export const pullRequestActionPicker = ({
     })
   }
   QuickPick.create({
+    context,
     items: menuItems,
     title: 'Code Review Actions',
     placeholder: 'Select action',

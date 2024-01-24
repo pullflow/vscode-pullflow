@@ -10,6 +10,15 @@ export const trackUserPresence = (
   context: ExtensionContext,
   statusBar: StatusBarItem
 ) => {
+  const flowEnabled = Store.get(context)?.isFlowDetectionEnabled
+  if (!flowEnabled) {
+    log.info(`user disabled flow detection`, module)
+    return {
+      clearFlowInterval: () => {},
+      disposeTextEditorEvent: () => {},
+    }
+  }
+
   log.info(`started tracking user flow`, module)
   const userFlowIntervalId = setInterval(async () => {
     await UserPresence.update(context, statusBar)
@@ -18,7 +27,10 @@ export const trackUserPresence = (
     incrementKeyStrokeCount(context)
   })
 
-  return { userFlowIntervalId, textEditorEvent }
+  return {
+    clearFlowInterval: () => clearInterval(userFlowIntervalId),
+    disposeTextEditorEvent: () => textEditorEvent.dispose(),
+  }
 }
 
 const incrementKeyStrokeCount = (context: ExtensionContext) => {

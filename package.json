@@ -170,6 +170,22 @@
           "fontCharacter": "\\e90c"
         }
       }
+    },
+    "configuration": {
+      "id": "pullflow",
+      "title": "Pullflow",
+      "properties": {
+        "pullflow.telemetry.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable Pullflow to transmit product usage telemetry. \n\n_**Important:** To activate telemetry transmission, both this setting and the VS Code telemetry option must be enabled. Telemetry will not be sent if either of these settings is disabled._"
+        },
+        "pullflow.automaticFlowDetection.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Alow Pullflow to automatically detect flow state based on keystrokes.\n\n_**Note:** Extension must be reloaded for this to take affect._"
+        }
+      }
     }
   },
   "scripts": {
@@ -204,6 +220,11 @@
   },
   "dependencies": {
     "@octokit/rest": "^19.0.3",
+    "@opentelemetry/api": "^1.7.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.46.0",
+    "@opentelemetry/resources": "^1.19.0",
+    "@opentelemetry/sdk-trace-base": "^1.19.0",
+    "@opentelemetry/semantic-conventions": "^1.19.0",
     "dotenv": "^16.0.3",
     "jest": "^29.5.0",
     "moment": "^2.29.4",

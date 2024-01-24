@@ -19,6 +19,7 @@ export const pullRequestUserPicker = ({
   statusBar: StatusBarItem
 }) => {
   QuickPick.create({
+    context,
     items: reviewerItems,
     title: 'Reviewers',
     placeholder: 'Select reviewer',
