@@ -178,7 +178,12 @@
         "pullflow.telemetry.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Allow Pullflow to send product usage telemetry.\n\n_**Note:** For Pullflow to send any telemetry BOTH this setting and VS Code telemetry must be enabled. If either one is disabled no telemetry will be sent._"
+          "markdownDescription": "Enable Pullflow to transmit product usage telemetry. \n\n_**Important:** To activate telemetry transmission, both this setting and the VS Code telemetry option must be enabled. Telemetry will not be sent if either of these settings is disabled._"
+        },
+        "pullflow.automaticFlowDetection.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Alow Pullflow to automatically detect flow state based on keystrokes.\n\n_**Note:** Extension must be reloaded for this to take affect._"
         }
       }
     }
