@@ -16,15 +16,15 @@ export const SignOut = async ({
   pollIntervalId: ReturnType<typeof setInterval>
   focusStateEvent: ReturnType<typeof window.onDidChangeWindowState>
   presenceInterval: {
-    userFlowIntervalId: ReturnType<typeof setInterval>
-    textEditorEvent: ReturnType<typeof window.onDidChangeTextEditorSelection>
+    clearFlowInterval: Function
+    disposeTextEditorEvent: Function
   }
 }) => {
   await context.secrets.store(AppConfig.app.sessionSecret, '')
   await Store.clear(context)
   StatusBar.update({ context, statusBar, state: StatusBarState.SignedOut })
   clearInterval(pollIntervalId) // stopping polling interval
-  clearInterval(presenceInterval.userFlowIntervalId) // stopping user flow interval
   focusStateEvent.dispose() // removing focus event listener
-  presenceInterval.textEditorEvent.dispose() // removing text editor event listener
+  presenceInterval.clearFlowInterval() // stopping user flow interval
+  presenceInterval.disposeTextEditorEvent() // removing text editor event listener
 }

@@ -1,4 +1,4 @@
-import { QuickPickItem } from 'vscode'
+import { ExtensionContext, QuickPickItem } from 'vscode'
 import { QuickPick } from './quickPick'
 
 export interface TimeSelectionItem extends QuickPickItem {
@@ -25,14 +25,17 @@ export const TimeIntervals: TimeSelectionItem[] = [
 
 export const timePicker = ({
   title,
+  context,
   onDidChangeSelection,
 }: {
   title: string
+  context: ExtensionContext
   onDidChangeSelection: (
     selection: readonly TimeSelectionItem[]
   ) => Promise<Boolean>
 }) => {
   QuickPick.create({
+    context,
     items: TimeIntervals,
     title,
     placeholder: 'Choose time interval',

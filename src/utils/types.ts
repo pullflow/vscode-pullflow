@@ -48,6 +48,8 @@ export type CacheObject = {
   keyStrokeCount?: number
   lastKeyStrokeTime?: number | null
   previousPresenceStatus?: PresenceStatus
+  isTelemetryEnabled?: boolean
+  isFlowDetectionEnabled?: boolean
 }
 export enum StatusBarState {
   Loading,
@@ -168,4 +170,10 @@ export type RepoInfo = {
 }
 export type RefreshCodeReviewVariables = {
   codeReviewId: string
+}
+export type TraceAttributes = QuickPickTrace
+
+export type QuickPickTrace = {
+  title: string
+  selectedItem?: string
 }
