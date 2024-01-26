@@ -20,6 +20,7 @@ jobs:
           envkey_SESSIONS_SECRET_KEY: ${{ secrets.SESSION_SECRET_KEY }}
           envkey_CLIENT_IDENTIFIER: com.pullflow.vscode
           envkey_PULLFLOW_APP_URL: https://app.pullflow.com
+          envkey_PULLFLOW_TELEMETRY_URL: https://collector.pullflow.cloud
 
       - name: Build, compile and test
         run: |
