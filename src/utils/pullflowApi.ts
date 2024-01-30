@@ -20,6 +20,7 @@ export class PullflowApi {
         Accept: 'application/json, text/plain',
         'Content-Type': 'application/json;charset=UTF-8',
         'auth-provider': 'custom-auth',
+        'event-provider': 'extension',
       },
     }
     this.apiUrl = AppConfig.pullflow.graphqlUrl
