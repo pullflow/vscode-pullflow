@@ -2,7 +2,6 @@ import {
   ExtensionContext,
   StatusBarItem,
   WindowState,
-  commands,
   window,
   workspace,
 } from 'vscode'
@@ -11,9 +10,7 @@ import { log } from './logger'
 import { StatusBar } from '../views/statusBar/statusBar'
 import { Authorization } from './authorization'
 import { StatusBarState } from './types'
-import { SpaceUsersApi } from '../api/spaceUsersApi'
 import { PullRequestState } from './pullRequestsState'
-import { Command } from './commands'
 import { trackUserPresence } from '../userPresence/trackUserPresence'
 
 const POLLING_TIME = 60000 // in ms
@@ -103,21 +100,8 @@ const setSpaceUsers = async ({
     return
   }
 
-  const spaceUsers = await SpaceUsersApi.get({
-    authToken: session?.accessToken ?? '',
-    context,
-  })
-  if (spaceUsers.error || spaceUsers.message) {
-    window.showInformationMessage(
-      `Error in fetching space users ${spaceUsers.error || spaceUsers.message}`
-    )
-    commands.executeCommand(Command.signOut)
-    return
-  }
-
   await Store.set(context, {
     isFocused: window.state.focused,
-    spaceUsers: spaceUsers.spaceUsers,
   })
 }
 
