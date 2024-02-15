@@ -39,6 +39,7 @@ describe('Pull Request Quick Actions', () => {
   })
 
   it('adds assignee to pull request', async () => {
+    mockSpaceUsers.SpaceUsers.get.mockReturnValue([])
     await subject().addAssignee({
       codeReview: mockModel,
       context: mockModel,
@@ -49,6 +50,7 @@ describe('Pull Request Quick Actions', () => {
         context: mockModel,
         placeholder: 'Select a user',
         title: 'Add assignee to pull request',
+        spaceUsers: [],
       })
     )
     expect(mockPresence.Presence.set).toBeCalled()
@@ -56,6 +58,7 @@ describe('Pull Request Quick Actions', () => {
   })
 
   it('adds reviewer on pull request', async () => {
+    mockSpaceUsers.SpaceUsers.get.mockReturnValue([])
     await subject().requestReview({
       codeReview: mockModel,
       context: mockModel,
@@ -66,6 +69,7 @@ describe('Pull Request Quick Actions', () => {
         context: mockModel,
         placeholder: 'Select a user',
         title: 'Add reviewer to pull request',
+        spaceUsers: [],
       })
     )
     expect(mockPresence.Presence.set).toBeCalled()
@@ -84,6 +88,7 @@ const subject = () => {
   jest.mock('../utils/pullRequestsState', () => mockPullRequestState)
   jest.mock('../views/quickpicks/spaceUserPicker', () => mockSpaceUserPicker)
   jest.mock('../views/quickpicks/timePicker', () => mockTimerPicker)
+  jest.mock('../models/spaceUsers', () => mockSpaceUsers)
   return require('./pullRequestQuickActions').PullRequestQuickActions
 }
 
@@ -107,6 +112,11 @@ const mockPullRequestState = {
   PullRequestState: {
     update: jest.fn(),
     updateWithDelay: jest.fn(),
+  },
+}
+const mockSpaceUsers = {
+  SpaceUsers: {
+    get: jest.fn(),
   },
 }
 const mockSpaceUserPicker = {
