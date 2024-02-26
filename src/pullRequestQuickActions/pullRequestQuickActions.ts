@@ -7,6 +7,7 @@ import { Presence } from '../models/presence'
 import { TimeSelectionItem, timePicker } from '../views/quickpicks/timePicker'
 import moment = require('moment')
 import { PullRequestState } from '../utils/pullRequestsState'
+import { SpaceUsers } from '../models/spaceUsers'
 
 export const PullRequestQuickActions = {
   applyLabel: async ({
@@ -118,10 +119,19 @@ export const PullRequestQuickActions = {
     context: ExtensionContext
     statusBar: StatusBarItem
   }) => {
+    const spaceUsers = await SpaceUsers.get({
+      context,
+      codeReviewId: codeReview.id,
+    })
+    if (!spaceUsers) {
+      return false
+    }
+
     spaceUserPicker({
       context,
       placeholder: 'Select a user',
       title: 'Add assignee to pull request',
+      spaceUsers,
       onDidChangeSelection: async (item) => {
         if (!item[0].description) return false
 
@@ -156,6 +166,7 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+    return true
   },
 
   requestReview: async ({
@@ -167,10 +178,19 @@ export const PullRequestQuickActions = {
     context: ExtensionContext
     statusBar: StatusBarItem
   }) => {
+    const spaceUsers = await SpaceUsers.get({
+      context,
+      codeReviewId: codeReview.id,
+    })
+    if (!spaceUsers) {
+      return false
+    }
+
     spaceUserPicker({
       context,
       placeholder: 'Select a user',
       title: 'Add reviewer to pull request',
+      spaceUsers,
       onDidChangeSelection: async (item) => {
         if (!item[0].description) return false
 
@@ -209,6 +229,7 @@ export const PullRequestQuickActions = {
       context,
       statusBar,
     })
+    return true
   },
 
   refresh: async ({
