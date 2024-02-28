@@ -183,7 +183,7 @@
         "pullflow.automaticFlowDetection.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Alow Pullflow to automatically detect flow state based on keystrokes.\n\n_**Note:** Extension must be reloaded for this to take affect._"
+          "markdownDescription": "Allow Pullflow to automatically detect flow state based on keyboard activity.\n\n_**Note:** Extension must be reloaded for this to take affect._"
         }
       }
     }
