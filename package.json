@@ -3,7 +3,7 @@
   "publisher": "Pullflow",
   "displayName": "Pullflow",
   "description": "Code review collaboration across GitHub, Slack, and VS Code.",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "preview": true,
   "license": "MIT",
   "engines": {
