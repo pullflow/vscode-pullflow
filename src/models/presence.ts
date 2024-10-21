@@ -29,7 +29,7 @@ export const Presence = {
 
     const response = await PresenceApi.setPresence({
       status,
-      authToken: session.accessToken,
+      accessToken: session.accessToken,
       context,
       repoInfo,
     })
