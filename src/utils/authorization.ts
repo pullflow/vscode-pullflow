@@ -25,6 +25,7 @@ export const Authorization = {
       AppConfig.app.sessionSecret,
       JSON.stringify(session)
     )
+    await context.secrets.store('userRefreshToken', user.refreshToken)
     return session
   },
 

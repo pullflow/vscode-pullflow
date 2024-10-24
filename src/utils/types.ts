@@ -3,6 +3,7 @@ import { QuickPickItem } from 'vscode'
 export type User = {
   username: string
   accessToken: string
+  refreshToken: string
 }
 export type ChatChannel = {
   id: string

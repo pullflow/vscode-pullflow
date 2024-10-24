@@ -34,6 +34,7 @@ export async function activate(context: ExtensionContext) {
       const user = {
         username: query.get('username') as string,
         accessToken: query.get('accessToken') as string,
+        refreshToken: query.get('refreshToken') as string,
       }
       await Store.set(context, {
         user,
