@@ -35,4 +35,3 @@ jobs:
       - name: publish
         run: |
           yarn global add vsce
-          vsce publish -p ${{ secrets.VSCE_ACCESS_TOKEN_TEMPORARY }}
