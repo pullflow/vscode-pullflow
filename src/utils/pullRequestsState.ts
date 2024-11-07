@@ -9,7 +9,7 @@ import { log } from './logger'
 
 const MAX_ERROR_COUNT = 3
 const module = 'pullRequestState.ts'
-const DELAY_TIME = 30000 // 3 seconds
+const DELAY_TIME = 30000 // 30 seconds
 
 export const PullRequestState = {
   update: async ({

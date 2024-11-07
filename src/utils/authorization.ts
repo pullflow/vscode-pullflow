@@ -14,7 +14,7 @@ export const Authorization = {
   }) => {
     const session: AuthenticationSession = {
       id: user.username,
-      accessToken: user.authToken,
+      accessToken: user.accessToken,
       account: {
         label: user.username,
         id: user.username,
@@ -25,6 +25,7 @@ export const Authorization = {
       AppConfig.app.sessionSecret,
       JSON.stringify(session)
     )
+    await context.secrets.store('userRefreshToken', user.refreshToken)
     return session
   },
 

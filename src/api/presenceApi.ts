@@ -14,18 +14,18 @@ const SET_USER_PRESENCE = `
 export const PresenceApi = {
   setPresence: async ({
     status,
-    authToken,
+    accessToken,
     repoInfo,
     context,
   }: {
     status: PresenceStatus
-    authToken: string
+    accessToken: string
     repoInfo: RepoInfo
     context: ExtensionContext
   }) => {
     log.info(`setting user presence: ${{ status }}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(SET_USER_PRESENCE, {
         status,

@@ -21,6 +21,7 @@ export const SignOut = async ({
   }
 }) => {
   await context.secrets.store(AppConfig.app.sessionSecret, '')
+  await context.secrets.store('userRefreshToken', '')
   await Store.clear(context)
   StatusBar.update({ context, statusBar, state: StatusBarState.SignedOut })
   clearInterval(pollIntervalId) // stopping polling interval

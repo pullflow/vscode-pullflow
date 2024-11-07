@@ -13,7 +13,7 @@ export const SpaceUsers = {
     const session = await Authorization.currentSession(context)
     const response = await SpaceUsersApi.get({
       codeReviewId,
-      authToken: session?.accessToken ?? '',
+      accessToken: session?.accessToken ?? '',
       context,
     })
 
