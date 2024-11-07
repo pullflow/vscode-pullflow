@@ -16,17 +16,17 @@ const SPACE_USERS_QUERY = `query spaceUsersForVscode($codeReviewId: String!) {
 `
 export const SpaceUsersApi = {
   get: async ({
-    authToken,
+    accessToken,
     codeReviewId,
     context,
   }: {
-    authToken: string
+    accessToken: string
     codeReviewId: string
     context: ExtensionContext
   }) => {
     log.info(`fetching space users`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(SPACE_USERS_QUERY, { codeReviewId })
       return data.spaceUsersForVscode

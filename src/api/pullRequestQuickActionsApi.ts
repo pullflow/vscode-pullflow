@@ -61,19 +61,19 @@ mutation setCodeReviewReminder($codeReviewId: String!, $duration: Int!) {
 
 export const PullRequestQuickActionsApi = {
   addLabels: async ({
-    authToken,
+    accessToken,
     labels,
     codeReviewId,
     context,
   }: {
-    authToken: string
+    accessToken: string
     labels: string
     codeReviewId: string
     context: ExtensionContext
   }) => {
     log.info(`adding labels to pull request: ${{ labels }}}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(ADD_LABELS, {
         labels,
@@ -88,19 +88,19 @@ export const PullRequestQuickActionsApi = {
   },
 
   approve: async ({
-    authToken,
+    accessToken,
     codeReviewId,
     body,
     context,
   }: {
-    authToken: string
+    accessToken: string
     codeReviewId: string
     body: string
     context: ExtensionContext
   }) => {
     log.info(`approving pull request: ${{ codeReviewId }}}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(APPROVE_CODE_REVIEW, {
         codeReviewId,
@@ -115,19 +115,19 @@ export const PullRequestQuickActionsApi = {
   },
 
   addAssignee: async ({
-    authToken,
+    accessToken,
     codeReviewId,
     assigneeXid,
     context,
   }: {
-    authToken: string
+    accessToken: string
     codeReviewId: string
     assigneeXid: string
     context: ExtensionContext
   }) => {
     log.info(`add assignee to pull request: ${{ assigneeXid }}}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(ADD_ASSIGNEE, {
         codeReviewId,
@@ -144,17 +144,17 @@ export const PullRequestQuickActionsApi = {
   requestReview: async ({
     codeReviewId,
     reviewerXid,
-    authToken,
+    accessToken,
     context,
   }: {
     codeReviewId: string
     reviewerXid: string
-    authToken: string
+    accessToken: string
     context: ExtensionContext
   }) => {
     log.info(`requesting review: ${{ reviewerXid }}}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(REQUEST_REVIEW, {
         codeReviewId,
@@ -170,16 +170,16 @@ export const PullRequestQuickActionsApi = {
 
   refresh: async ({
     codeReviewId,
-    authToken,
+    accessToken,
     context,
   }: {
     codeReviewId: string
-    authToken: string
+    accessToken: string
     context: ExtensionContext
   }) => {
     log.info(`requesting review: ${{ codeReviewId }}}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(REFRESH_CODE_REVIEW, {
         codeReviewId,
@@ -194,17 +194,17 @@ export const PullRequestQuickActionsApi = {
   setReminder: async ({
     duration,
     codeReviewId,
-    authToken,
+    accessToken,
     context,
   }: {
     duration: number
     codeReviewId: string
-    authToken: string
+    accessToken: string
     context: ExtensionContext
   }) => {
     log.info(`setting reminder: ${{ duration, codeReviewId }}}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(SET_REMINDER, {
         codeReviewId,

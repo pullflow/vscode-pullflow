@@ -22,13 +22,13 @@ export const MessageApi = {
     body,
     parentMessageXid,
     chatChannelId,
-    authToken,
+    accessToken,
     context,
   }: {
     body: string
     parentMessageXid: string
     chatChannelId: string
-    authToken: string
+    accessToken: string
     context: ExtensionContext
   }) => {
     log.info(
@@ -38,7 +38,7 @@ export const MessageApi = {
       module
     )
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(SEND_CODE_REVIEW_THREAD_MESSAGE, {
         body,
@@ -57,14 +57,14 @@ export const MessageApi = {
     codeAccountXid,
     codeReviewId,
     chatLink,
-    authToken,
+    accessToken,
     message,
     fromAuthor,
     context,
   }: {
     codeAccountXid: string
     chatLink: string
-    authToken: string
+    accessToken: string
     codeReviewId: string
     message: string
     fromAuthor: boolean
@@ -72,7 +72,7 @@ export const MessageApi = {
   }) => {
     log.info(`nudging user: ${{ codeAccountXid }}, ${{ chatLink }}`, module)
 
-    const pullflowApi = new PullflowApi(context, authToken)
+    const pullflowApi = new PullflowApi(context, accessToken)
     try {
       const data = await pullflowApi.fetch(SEND_CODE_REVIEW_DIRECT_MESSAGE, {
         codeAccountXid,

@@ -31,7 +31,7 @@ describe('Pull Request Quick Actions', () => {
     ).toHaveBeenCalledWith({
       body: mockText,
       codeReviewId: mockModel.id,
-      authToken: mockSession.accessToken,
+      accessToken: mockSession.accessToken,
       context: mockModel,
     })
     expect(mockPresence.Presence.set).toBeCalled()

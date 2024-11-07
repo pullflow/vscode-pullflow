@@ -33,12 +33,13 @@ export async function activate(context: ExtensionContext) {
       const query = new URLSearchParams(uri.query)
       const user = {
         username: query.get('username') as string,
-        authToken: query.get('accessToken') as string,
+        accessToken: query.get('accessToken') as string,
+        refreshToken: query.get('refreshToken') as string,
       }
       await Store.set(context, {
         user,
       })
-      if (user.authToken) {
+      if (user.accessToken) {
         await Authorization.createSession({ user, context })
         await initialize({ context, statusBar })
       }

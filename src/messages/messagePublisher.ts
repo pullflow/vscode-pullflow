@@ -34,7 +34,7 @@ export const MessagePublisher = {
       body: inputText || "I'm on it.",
       parentMessageXid: codeReview.parentMessageXid,
       chatChannelId: codeReview.chatChannelId,
-      authToken: session?.accessToken ?? '',
+      accessToken: session?.accessToken ?? '',
       context,
     })
 
@@ -98,7 +98,7 @@ export const MessagePublisher = {
       message,
       codeAccountXid: toAccount.xid,
       chatLink,
-      authToken: session?.accessToken ?? '',
+      accessToken: session?.accessToken ?? '',
       codeReviewId,
       fromAuthor,
       context,

@@ -34,7 +34,7 @@ export const PullRequestQuickActions = {
     const response = await PullRequestQuickActionsApi.addLabels({
       labels: inputText,
       codeReviewId: codeReview.id,
-      authToken: session?.accessToken ?? '',
+      accessToken: session?.accessToken ?? '',
       context,
     })
 
@@ -80,7 +80,7 @@ export const PullRequestQuickActions = {
     const response = await PullRequestQuickActionsApi.approve({
       body: inputText,
       codeReviewId: codeReview.id,
-      authToken: session?.accessToken ?? '',
+      accessToken: session?.accessToken ?? '',
       context,
     })
 
@@ -139,7 +139,7 @@ export const PullRequestQuickActions = {
         const response = await PullRequestQuickActionsApi.addAssignee({
           assigneeXid: item[0].description,
           codeReviewId: codeReview.id,
-          authToken: session?.accessToken ?? '',
+          accessToken: session?.accessToken ?? '',
           context,
         })
 
@@ -198,7 +198,7 @@ export const PullRequestQuickActions = {
         const response = await PullRequestQuickActionsApi.requestReview({
           reviewerXid: item[0].description,
           codeReviewId: codeReview.id,
-          authToken: session?.accessToken ?? '',
+          accessToken: session?.accessToken ?? '',
           context,
         })
 
@@ -244,7 +244,7 @@ export const PullRequestQuickActions = {
     const session = await Authorization.currentSession(context)
     const response = await PullRequestQuickActionsApi.refresh({
       codeReviewId,
-      authToken: session?.accessToken ?? '',
+      accessToken: session?.accessToken ?? '',
       context,
     })
     if (response.error || response.message) {
@@ -287,7 +287,7 @@ export const PullRequestQuickActions = {
       const response = await PullRequestQuickActionsApi.setReminder({
         codeReviewId: codeReview.id,
         duration,
-        authToken: session?.accessToken ?? '',
+        accessToken: session?.accessToken ?? '',
         context,
       })
       if (response.message || response.error || !response.success) {

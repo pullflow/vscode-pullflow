@@ -35,9 +35,7 @@ export const Reconnect = async (
 
   if (codeReviews.error) {
     log.info(`Failed to reconnect`, module)
-    window.showInformationMessage(
-      `Pullflow: Failed to reconnect. Please check your internet connection and try again.`
-    )
+    StatusBar.update({ context, statusBar, state: StatusBarState.Error })
     return
   }
 
