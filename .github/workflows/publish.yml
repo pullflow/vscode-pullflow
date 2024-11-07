@@ -1,7 +1,7 @@
 name: Publish to VS Code Marketplace
 on:
   push:
-    branches: [main, fix/readable-stream-error]
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,9 +22,6 @@ jobs:
           envkey_PULLFLOW_APP_URL: https://app.pullflow.com
           envkey_PULLFLOW_TELEMETRY_URL: https://collector.pullflow.cloud
 
-      - name: Install polyfill for ReadableStream
-        run: npm install readable-stream
-
       - name: Build, compile and test
         run: |
           yarn
@@ -35,4 +32,4 @@ jobs:
       - name: publish
         run: |
           yarn global add vsce
-          vsce publish -p ${{ secrets.VSCE_ACCESS_TOKEN_TEMPORARY }}
+          vsce publish -p ${{ secrets.VSCE_ACCESS_TOKEN }}
