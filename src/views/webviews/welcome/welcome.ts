@@ -1,8 +1,8 @@
-import { ExtensionContext, ViewColumn, Webview, window, Uri } from 'vscode'
+import { ExtensionContext, ViewColumn, Webview, window, Uri } from "vscode"
 
 const WelcomeView = {
-  title: 'Welcome to PullFlow',
-  type: 'welcome-view',
+  title: "Welcome to PullFlow",
+  type: "welcome-view",
 }
 
 export const Welcome = {
@@ -13,17 +13,17 @@ export const Welcome = {
       WelcomeView.title,
       column
     )
-    panel.iconPath = Uri.joinPath(context.extensionUri, 'assets/pullflow-logo.png')
+    panel.iconPath = Uri.joinPath(context.extensionUri, "assets/pullflow.png")
     panel.webview.html = Welcome.getHtml(panel.webview, context)
     panel.reveal(column)
   },
 
   getHtml: (webview: Webview, context: ExtensionContext) => {
     const assetsPath = webview.asWebviewUri(
-      Uri.joinPath(context.extensionUri, 'assets')
+      Uri.joinPath(context.extensionUri, "assets")
     )
     const stylePath = webview.asWebviewUri(
-      Uri.joinPath(context.extensionUri, 'styles/welcome.css')
+      Uri.joinPath(context.extensionUri, "styles/welcome.css")
     )
 
     return `<!DOCTYPE html>
