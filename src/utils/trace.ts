@@ -13,7 +13,7 @@ import { Store } from './store'
 import { AppConfig } from './appConfig'
 import { log } from './logger'
 
-const extensionInfo = extensions.getExtension('Pullflow.pullflow')?.packageJSON
+const extensionInfo = extensions.getExtension('PullFlow.pullflow')?.packageJSON
 
 type FakeTracer = {}
 type FakeBasicTracerProvider = {}

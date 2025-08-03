@@ -43,7 +43,7 @@ export const PullRequestState = {
     // if codeReviews contain error message
     if (codeReviews.requireRelogin) {
       log.error(codeReviews.error, module)
-      window.showInformationMessage(`Pullflow: Please login again`)
+      window.showInformationMessage(`PullFlow: Please login again`)
       commands.executeCommand(Command.signOut)
       return
     }
@@ -54,7 +54,7 @@ export const PullRequestState = {
         StatusBar.update({ context, statusBar, state: StatusBarState.Error })
       }
       window.showErrorMessage(
-        `Pullflow: Couldn't fetch pull requests. ${codeReviews.error.message}`
+        `PullFlow: Couldn't fetch pull requests. ${codeReviews.error.message}`
       )
       return
     }

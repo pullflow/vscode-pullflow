@@ -12,7 +12,7 @@ export const Reconnect = async (
   context: ExtensionContext,
   statusBar: StatusBarItem
 ) => {
-  log.info(`reconnecting to Pullflow`, module)
+  log.info(`reconnecting to PullFlow`, module)
 
   const session = await Authorization.currentSession(context)
   if (!session) {
@@ -28,7 +28,7 @@ export const Reconnect = async (
   // if codeReviews contain error message
   if (codeReviews.requireRelogin) {
     log.error(codeReviews.error, module)
-    window.showInformationMessage(`Pullflow: Please login again`)
+    window.showInformationMessage(`PullFlow: Please login again`)
     commands.executeCommand(Command.signOut)
     return
   }

@@ -16,7 +16,7 @@ export const ActivePullRequests = (
     !codeReviews?.pendingUserCodeReviews?.length &&
     !codeReviews?.userAuthoredCodeReviews?.length
   ) {
-    window.showInformationMessage('Pullflow: You have no PRs waiting for you.')
+    window.showInformationMessage('PullFlow: You have no PRs waiting for you.')
     return
   }
 

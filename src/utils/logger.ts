@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 
-const outputChannel = window.createOutputChannel('Pullflow')
+const outputChannel = window.createOutputChannel('PullFlow')
 
 const logMessage = (level: string, text: string, module: string) =>
   outputChannel.append(

@@ -22,7 +22,7 @@ export const SignIn = async ({
   )
   const user = await Authorization.waitForUser(context, SIGN_IN_TIME_OUT)
   if (!user) {
-    window.showErrorMessage('Pullflow: Sign in failed')
+    window.showErrorMessage('PullFlow: Sign in failed')
     return
   }
   const session =
@@ -30,7 +30,7 @@ export const SignIn = async ({
     (await Authorization.createSession({ user, context }))
 
   if (!session) {
-    window.showErrorMessage('Pullflow: Sign in failed')
+    window.showErrorMessage('PullFlow: Sign in failed')
     return
   }
   await initialize({ context, statusBar })
