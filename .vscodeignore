@@ -11,3 +11,14 @@ vsc-extension-quickstart.md
 **/.eslintrc.json
 **/*.map
 **/*.ts
+
+# Exclude environment files from the VSIX
+.env
+.env.*
+**/.env
+**/.env.*
+.env.defaults
+**/.env.defaults
+
+# Optional: exclude GitHub metadata
+.github/**
