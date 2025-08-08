@@ -87,8 +87,8 @@ export const MessagePublisher = {
 
     if (!toAccount.hasUser) {
       window.showInformationMessage(
-        `Failed to send message to ${toAccount.xid} because they are not a Pullflow user.
-            Please ask them to sign up to Pullflow at: https://app.pullflow.com`
+        `Failed to send message to ${toAccount.xid} because they are not a PullFlow user.
+            Please ask them to sign up to PullFlow at: https://app.pullflow.com`
       )
       return null
     }

@@ -23,13 +23,13 @@ const statusBarProperties = {
     command: Command.activePullRequests,
     backgroundColor: new ThemeColor(Theme.statusBar.success),
     text: '',
-    tooltip: 'Pullflow - Active Pull Requests',
+    tooltip: 'PullFlow - Active Pull Requests',
   },
   signedOut: {
     command: Command.signIn,
     backgroundColor: new ThemeColor(Theme.statusBar.error),
-    text: '⚠ Sign in to Pullflow',
-    tooltip: 'Sign in to Pullflow account',
+    text: '⚠ Sign in to PullFlow',
+    tooltip: 'Sign in to PullFlow account',
   },
   loading: {
     command: null,

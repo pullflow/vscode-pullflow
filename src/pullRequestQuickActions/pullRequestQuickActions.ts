@@ -89,13 +89,13 @@ export const PullRequestQuickActions = {
         `${
           response.message
             ? response.message
-            : 'Pullflow: Something went wrong, failed to approve pull request'
+            : 'PullFlow: Something went wrong, failed to approve pull request'
         }`
       )
       return false
     }
 
-    window.showInformationMessage(`Pullflow: Pull request approved`)
+    window.showInformationMessage(`PullFlow: Pull request approved`)
     await Presence.set({
       status: PresenceStatus.Active,
       context,
@@ -214,7 +214,7 @@ export const PullRequestQuickActions = {
         }
 
         window.showInformationMessage(
-          `Pullflow: ${item[0].label} added as reviewer to pull request #${codeReview.prNumber}.`
+          `PullFlow: ${item[0].label} added as reviewer to pull request #${codeReview.prNumber}.`
         )
         return true
       },
@@ -296,7 +296,7 @@ export const PullRequestQuickActions = {
         )
         return false
       }
-      window.showInformationMessage(`Pullflow: Successfully set reminder.`)
+      window.showInformationMessage(`PullFlow: Successfully set reminder.`)
       return true
     }
 

@@ -1,16 +1,16 @@
 {
   "name": "pullflow",
-  "publisher": "Pullflow",
-  "displayName": "Pullflow",
+  "publisher": "PullFlow",
+  "displayName": "PullFlow",
   "description": "Code review collaboration across GitHub, Slack, and VS Code.",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "preview": true,
   "license": "MIT",
   "engines": {
     "vscode": "^1.70.0"
   },
   "author": {
-    "name": "Pullflow"
+    "name": "PullFlow"
   },
   "icon": "assets/pullflow.png",
   "categories": [
@@ -41,27 +41,27 @@
     "commands": [
       {
         "command": "pullflow.active-pull-requests",
-        "title": "Pullflow: Active Pull Requests"
+        "title": "PullFlow: Active Pull Requests"
       },
       {
         "command": "pullflow.signIn",
-        "title": "Pullflow: Sign in"
+        "title": "PullFlow: Sign in"
       },
       {
         "command": "pullflow.signOut",
-        "title": "Pullflow: Sign out"
+        "title": "PullFlow: Sign out"
       },
       {
         "command": "pullflow.reconnect",
-        "title": "Pullflow: Reconnect"
+        "title": "PullFlow: Reconnect"
       },
       {
         "command": "pullflow.toggle-flow-state",
-        "title": "Pullflow: Toggle Flow State"
+        "title": "PullFlow: Toggle Flow State"
       },
       {
         "command": "pullflow.welcome-view",
-        "title": "Pullflow: Welcome"
+        "title": "PullFlow: Welcome"
       }
     ],
     "keybindings": [
@@ -73,117 +73,117 @@
     ],
     "icons": {
       "pullflow-icon": {
-        "description": "Pullflow icon",
+        "description": "PullFlow icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e90d"
         }
       },
       "slack-icon": {
         "description": "Slack icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e900"
         }
       },
       "github-icon": {
         "description": "GitHub icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e90b"
         }
       },
       "approved-icon": {
         "description": "Approved icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e905"
         }
       },
       "review-icon": {
         "description": "Review Requested icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e90a"
         }
       },
       "checks-running-icon": {
         "description": "Checks running icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e903"
         }
       },
       "checks-failed-icon": {
         "description": "Checks failed icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e904"
         }
       },
       "checks-skipped-icon": {
         "description": "Checks skipped icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e901"
         }
       },
       "checks-passed-icon": {
         "description": "Checks passed icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e902"
         }
       },
       "review-comment-icon": {
         "description": "Review comment icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e907"
         }
       },
       "pr-open-icon": {
         "description": "PR open icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e909"
         }
       },
       "request-changes-icon": {
         "description": "Request changes icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e906"
         }
       },
       "draft-pr-icon": {
         "description": "Draft PR icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e908"
         }
       },
       "flow-state-icon": {
         "description": "Flow-state icon",
         "default": {
-          "fontPath": "./assets/Pullflow.woff",
+          "fontPath": "./assets/PullFlow.woff",
           "fontCharacter": "\\e90c"
         }
       }
     },
     "configuration": {
       "id": "pullflow",
-      "title": "Pullflow",
+      "title": "PullFlow",
       "properties": {
         "pullflow.telemetry.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable Pullflow to transmit product usage telemetry. \n\n_**Important:** To activate telemetry transmission, both this setting and the VS Code telemetry option must be enabled. Telemetry will not be sent if either of these settings is disabled._"
+          "markdownDescription": "Enable PullFlow to transmit product usage telemetry. \n\n_**Important:** To activate telemetry transmission, both this setting and the VS Code telemetry option must be enabled. Telemetry will not be sent if either of these settings is disabled._"
         },
         "pullflow.automaticFlowDetection.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Allow Pullflow to automatically detect flow state based on keyboard activity.\n\n_**Note:** Extension must be reloaded for this to take affect._"
+          "markdownDescription": "Allow PullFlow to automatically detect flow state based on keyboard activity.\n\n_**Note:** Extension must be reloaded for this to take affect._"
         }
       }
     }
