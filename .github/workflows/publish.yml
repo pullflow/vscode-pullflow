@@ -7,12 +7,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Node version
-        uses: actions/setup-node@v1
-        with:
-          node-version: 18
+      - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
       - name: Make envfile
         uses: SpicyPizza/create-envfile@v1.3
@@ -29,7 +29,8 @@ jobs:
           yarn lint
           yarn test
 
-      - name: publish
+      - name: Publish to VS Code Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_ACCESS_TOKEN }}
         run: |
-          yarn global add vsce
-          vsce publish -p ${{ secrets.VSCE_ACCESS_TOKEN }}
+          npx @vscode/vsce publish -p "$VSCE_PAT"
